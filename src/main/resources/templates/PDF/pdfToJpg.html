@@ -1,0 +1,196 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<style>
+.files input {
+    outline: 2px dashed #92b0b3;
+    outline-offset: -10px;
+    -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+    transition: outline-offset .15s ease-in-out, background-color .15s linear;
+    padding: 120px 0px 85px 35%;
+    text-align: center !important;
+    margin: 0;
+    width: 100% !important;
+}
+.files input:focus{     outline: 2px dashed #92b0b3;  outline-offset: -10px;
+    -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+    transition: outline-offset .15s ease-in-out, background-color .15s linear; border:1px solid #92b0b3;
+ }
+.files{ position:relative}
+.files:after {  pointer-events: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 50px;
+    right: 0;
+    height: 56px;
+    content: "";
+    background-image: url(https://image.flaticon.com/icons/png/128/109/109612.png);
+    display: block;
+    margin: 0 auto;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+.color input{ background-color:#f1f1f1;}
+.files:before {
+    position: absolute;
+    bottom: 10px;
+    left: 0;  pointer-events: none;
+    width: 100%;
+    right: 0;
+    height: 57px;
+    content: " or drag it here. ";
+    display: block;
+    margin: 0 auto;
+    color: #2ea591;
+    text-transform: capitalize;
+    text-align: center;
+}
+canvas{
+border: solid 3px black;
+border-radius: 5px;
+}
+</style>
+
+<div class="container" id="mainJpgDiv">
+<div class="row text-center">
+<span>Upload PDF file</span>
+</div>
+	<div class="row">
+		<div class="files col-md-12">
+			<input
+				type="file" class="form-control" id="pdf-file">
+		</div>
+	</div>
+	<br>
+	<div class="row">
+		<div id="pdf-preview" class="text-center" style="width: 100%"></div>
+	</div>
+
+	<br> <br>
+	<div class="row">
+		<div class="modal-footer float-end">
+			<button type="button" onclick="processFile()"
+				class="btn btn-info btn-round">Preview</button>
+			<div></div>
+			<button type="button" onclick="processAndDownloadFile()"
+				class="btn btn-success btn-round">Convert</button>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+
+//document.getElementById('pdf-file').addEventListener('change', function() {
+	function processFile(){
+	$('#pdf-preview').empty();
+    var file = $("#pdf-file").prop('files')[0];
+    var fileName = file.name;
+	var rec = fileName.split(".");
+	var ext = rec[rec.length - 1].toLowerCase();
+	if (ext != "pdf") {
+		Swal.fire({
+			  title: 'Error!',
+			  text: 'Incorrect file format. Please upload PDF file.',
+			  icon: 'error'
+		});
+		return false;
+	}
+    var reader = new FileReader();
+    reader.onload = function() {
+        var pdf = new Uint8Array(this.result);
+        displayPDF(pdf);
+    }
+    reader.readAsArrayBuffer(file);
+	}
+//});
+
+function displayPDF(pdf) {
+    var pdfjsLib = window['pdfjs-dist/build/pdf'];
+    pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
+    var loadingTask = pdfjsLib.getDocument({data: pdf});
+    loadingTask.promise.then(function(pdf) {
+        pdf.getPage(1).then(function(page) {
+            var canvas = document.createElement('canvas');
+            var context = canvas.getContext('2d');
+            var viewport = page.getViewport({scale: 1});
+            canvas.height = viewport.height;
+            canvas.width = viewport.width;
+            var renderContext = {
+                canvasContext: context,
+                viewport: viewport
+            };
+            page.render(renderContext).promise.then(function() {
+                document.getElementById('pdf-preview').appendChild(canvas);
+            });
+        });
+    });
+}
+
+function processAndDownloadFile(){
+	var data = new FormData();
+	var pdfFile = $("#pdf-file").prop('files')[0];
+	var fileName = pdfFile.name;
+	var rec = fileName.split(".");
+	var ext = rec[rec.length - 1].toLowerCase();
+	if (ext != "pdf") {
+		Swal.fire({
+			  title: 'Error!',
+			  text: 'Incorrect file format. Please upload PDF file.',
+			  icon: 'error'
+		});
+		return false;
+	} else {
+		//var newFile = new File([pdfFile]);
+		data.append("files", $("#pdf-file").prop('files')[0]);
+	}
+	
+	
+	$.ajax({
+        url: "convert-pdf-to-jpg",
+        type:"post",
+        data: data,
+        enctype: 'multipart/form-data',
+        cache: false,
+        contentType: false,
+        processData: false,
+        method: 'POST',
+        type: 'POST',
+        success: function (data) {
+        	Swal.fire({
+        		  icon: 'success',
+        		  title: 'File Converted Successfully',
+        		  showConfirmButton: false,
+        		  timer: 2000
+        	});
+        	
+        	$.ajax({
+                url: "getCommonPageForConverted",
+                success: function (resp) {
+                	$('#mainJpgDiv').empty();
+                	$('#mainJpgDiv').html(resp);
+                	$('#fileLocation').val(data);
+                	$('form').attr('action', data);
+                	$('#convertedImgView').attr("src", data);
+                },error: function(resp){
+                	console.log("Error");
+                }
+        	});
+        	
+           // $("#result").text(data);
+            console.log("SUCCESS : ", data);
+            //$("#btnSubmit").prop("disabled", false);
+
+        },
+        error: function (e) {
+
+           //$("#result").text(e.responseText);
+            console.log("ERROR : ", e);
+           // $("#btnSubmit").prop("disabled", false);
+
+        }
+    });
+	
+	
+	
+}
+	
+</script>
+</html>
