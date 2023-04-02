@@ -8,6 +8,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Base64;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -28,7 +29,6 @@ import org.springframework.web.multipart.MultipartFile;
 public class PdfToJpgService {
 
 	public ResponseEntity<Object> convertPdfToJpg(MultipartFile uploadfile) throws IOException {
-		//File outputfile = new File("saved.jpg");
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		byte[] imageData = null;
 		 try {
@@ -54,14 +54,16 @@ public class PdfToJpgService {
 	        } catch (Exception e) {
 	            e.printStackTrace();
 	        }
-		 ByteArrayInputStream bais = new ByteArrayInputStream(imageData);
-		 InputStreamResource fileInputStream = new InputStreamResource(bais);
+//		 ByteArrayInputStream bais = new ByteArrayInputStream(imageData);
+//		 InputStreamResource fileInputStream = new InputStreamResource(bais);
 		 HttpHeaders headers = new HttpHeaders();
 			headers.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=");
 			// defining the custom Content-Type
 			headers.set(HttpHeaders.CONTENT_TYPE, "image/jpeg");
 
-			return new ResponseEntity<>(fileInputStream, headers, HttpStatus.OK);
+			String base64Image = Base64.getEncoder().encodeToString(imageData);
+			String responseData = "data:image/jpg;base64," + base64Image;
+			return new ResponseEntity<>(responseData, headers, HttpStatus.OK);
 	}
 
 }

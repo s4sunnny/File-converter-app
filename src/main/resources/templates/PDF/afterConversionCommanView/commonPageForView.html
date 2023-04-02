@@ -1,24 +1,56 @@
-<div class="content">
-<input type="hidden" id="fileLocation">
+<style>
+#convertedImgView {
+	border: solid 3px black;
+	border-radius: 5px;
+}
+</style>
+
+
+
+<div class="content text-center">
+	<a style="display: none;" id="fileLocation" href=""></a>
+	<input type="hidden" id="imageData">
 	<div class="row">
 		<div class="col-md-12">
 			<span>Please click on the below link to download your
 				converted file</span>
 		</div>
 	</div>
-	<div class="row" id="imagePreview">
+	<div style="display: none;" class="row" id="imagePreview">
 		<div class="col-md-12">
 			<img alt="Image Preview" id="convertedImgView" src="">
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-md-2">
-			<form method="get" action="">
-				<button type="submit">Download!</button>
-			</form>
-		</div>
-		<div class="col-md-2">
-			<button type="button" onclick="$('#imagePreview').show()">Preview Image</button>
-		</div>
+	<div class="float-end">
+				<button class="btn btn-info btn-round" onclick="downloadImage()" type="submit">Download!</button>
+			<button type="button" class="btn btn-info btn-round"
+				onclick="$('#imagePreview').show()">Preview Image</button>
 	</div>
 </div>
+<br><br>
+<script>
+
+function downloadImage(){
+	var base64Data = $('#imageData').val();
+
+	  // Convert the base64 data to a Blob object
+	  var byteCharacters = atob(base64Data.split(',')[1]);
+	  var byteNumbers = new Array(byteCharacters.length);
+	  for (let i = 0; i < byteCharacters.length; i++) {
+	    byteNumbers[i] = byteCharacters.charCodeAt(i);
+	  }
+	  var byteArray = new Uint8Array(byteNumbers);
+	  var blob = new Blob([byteArray], { type: 'image/jpg' });
+
+	  // Create a URL to download the image
+	  var url = URL.createObjectURL(blob);
+
+	  // Create a link and click it to download the image
+	  var link = document.createElement('a');
+	  link.href = url;
+	  link.download = 'image.jpg';
+	  document.body.appendChild(link);
+	  link.click();
+	  document.body.removeChild(link);
+}
+</script>
