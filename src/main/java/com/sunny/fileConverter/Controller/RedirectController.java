@@ -14,24 +14,31 @@ public class RedirectController {
 		return model;
 	}
 	
-	@GetMapping(value = "/searchJpgToPdf")
+	@GetMapping(value = "/searchImageToPdfView")
 	public ModelAndView searchJpgToPdf(ModelAndView model) {
 
-		model.setViewName("PDF/JpgToPdf");
+		model.setViewName("PDF/imageToPdf/ImageToPdf");
 		return model;
 	}
 	
 	@GetMapping(value = "/searchPdfToJpgView")
 	public ModelAndView searchPdfToJpgView(ModelAndView model) {
 
-		model.setViewName("PDF/pdfToJpg");
+		model.setViewName("PDF/pdfToImage/pdfToJpg");
 		return model;
 	}
 
-	@GetMapping(value = "/getCommonPageForConverted")
+	@GetMapping(value = "/getPdfToJpgView")
 	public ModelAndView getCommonPageForConverted(ModelAndView model) {
 
-		model.setViewName("PDF/afterConversionCommanView/commonPageForView");
+		model.setViewName("PDF/pdfToImage/pdfToImageView");
+		return model;
+	}
+	
+	@GetMapping(value = "/getJpgToPdfView")
+	public ModelAndView getJpgToPdfView(ModelAndView model) {
+
+		model.setViewName("PDF/imageToPdf/ImageToPdfView");
 		return model;
 	}
 	

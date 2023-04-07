@@ -1,0 +1,172 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<style>
+.files input {
+    outline: 2px dashed #92b0b3;
+    outline-offset: -10px;
+    -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+    transition: outline-offset .15s ease-in-out, background-color .15s linear;
+    padding: 120px 0px 85px 35%;
+    text-align: center !important;
+    margin: 0;
+    width: 100% !important;
+}
+.files input:focus{     outline: 2px dashed #92b0b3;  outline-offset: -10px;
+    -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+    transition: outline-offset .15s ease-in-out, background-color .15s linear; border:1px solid #92b0b3;
+ }
+.files{ position:relative}
+.files:after {  pointer-events: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 50px;
+    right: 0;
+    height: 56px;
+    content: "";
+    background-image: url(https://image.flaticon.com/icons/png/128/109/109612.png);
+    display: block;
+    margin: 0 auto;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+.color input{ background-color:#f1f1f1;}
+.files:before {
+    position: absolute;
+    bottom: 10px;
+    left: 0;  pointer-events: none;
+    width: 100%;
+    right: 0;
+    height: 57px;
+    content: " or drag it here. ";
+    display: block;
+    margin: 0 auto;
+    color: #2ea591;
+    text-transform: capitalize;
+    text-align: center;
+}
+canvas{
+border: solid 3px black;
+border-radius: 5px;
+}
+</style>
+
+<div class="container-fluid">
+<div class="container" id="mainJpgDiv">
+<div class="row text-center">
+<span>Upload Image file</span>
+</div>
+	<div class="row">
+		<div class="files col-md-12">
+			<input
+				type="file" class="form-control" id="image-file" multiple="multiple">
+		</div>
+	</div>
+	<br>
+	<div class="row">
+		<div id="image-preview"></div>
+	</div>
+
+	<br> <br>
+	<div class="row">
+		<div class="modal-footer float-end">
+			<button type="button" onclick="processFile()"
+				class="btn btn-info btn-round">Preview</button>
+			<div></div>
+			<button type="button" onclick="processAndDownloadFile()"
+				class="btn btn-success btn-round">Convert</button>
+		</div>
+	</div>
+</div>
+</div><br><br>
+<script type="text/javascript">
+
+function processFile(){
+	$('#image-preview').empty();
+    var file = $("#image-file").prop('files')[0];
+    var fileName = file.name;
+	var rec = fileName.split(".");
+	var ext = rec[rec.length - 1].toLowerCase();
+	if (ext != "jpg") {
+		Swal.fire({
+			  title: 'Error!',
+			  text: 'Incorrect file format. Please upload Image file.',
+			  icon: 'error'
+		});
+		return false;
+	}
+	
+	var imageInput = document.getElementById("image-file");
+	var preview = $('#image-preview');
+	  preview.empty();
+	  var files = imageInput.files;
+	  if (files) {
+	    for (let i = 0; i < files.length; i++) {
+	      var file = files[i];
+	      var reader = new FileReader();
+	      reader.addEventListener("load", () => {
+	    	  preview.append('<img style="height:80%; width:40%;" src="' + reader.result + '" alt="Preview Image">');
+	      });
+	      reader.readAsDataURL(file);
+	    }
+	  }
+}
+
+
+function processAndDownloadFile(){
+	var data = new FormData();
+	var pdfFile = $("#image-file").prop('files')[0];
+	var fileName = pdfFile.name;
+	var rec = fileName.split(".");
+	var ext = rec[rec.length - 1].toLowerCase();
+	if (ext != "jpg") {
+		Swal.fire({
+			  title: 'Error!',
+			  text: 'Incorrect file format. Please upload Image file.',
+			  icon: 'error'
+		});
+		return false;
+	} else {
+		data.append("files", $("#image-file").prop('files')[0]);
+	}
+	
+	$.ajax({
+        url: "convertImageToPdf",
+        type:"post",
+        data: data,
+        enctype: 'multipart/form-data',
+        cache: false,
+        contentType: false,
+        processData: false,
+        method: 'POST',
+        type: 'POST',
+        success: function (data) {
+        	Swal.fire({
+        		  icon: 'success',
+        		  title: 'File Converted Successfully',
+        		  showConfirmButton: false,
+        		  timer: 2000
+        	});
+        	
+        	$.ajax({
+                url: "getJpgToPdfView",
+                success: function (resp) {
+                	$('#mainJpgDiv').empty();
+                	$('#mainJpgDiv').html(resp);
+                	$('#pdfData').val(data);
+                	$('#fileLocation').attr("href", data);
+                	$('#convertedImgView').attr("src", data);
+                },error: function(resp){
+                	console.log("Error");
+                }
+        	});
+            //console.log("SUCCESS : ", data);
+        },
+        error: function (e) {
+            console.log("ERROR : ", e);
+        }
+    });
+	
+}
+	
+</script>
+</html>

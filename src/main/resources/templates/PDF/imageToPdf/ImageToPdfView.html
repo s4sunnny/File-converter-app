@@ -1,0 +1,41 @@
+<style>
+#convertedImgView {
+	border: solid 3px black;
+	border-radius: 5px;
+}
+</style>
+
+
+
+<div class="content text-center">
+<input type="hidden" id="pdfData">
+	<div class="row">
+		<div class="col-md-12">
+			<span>Please click on the below link to download your
+				converted file</span>
+		</div>
+	</div>
+	<div class="float-end">
+		<button class="btn btn-info btn-round" onclick="downloadPdf()"
+			type="submit">Download!</button>
+		<!-- <button type="button" class="btn btn-info btn-round"
+				onclick="$('#imagePreview').show()">Preview Image</button> -->
+	</div>
+</div>
+<br>
+<br>
+<script>
+	function downloadPdf() {
+		var pdfData = $('#pdfData').val();
+		// Create a new Blob object from the byte array
+		  const blob = new Blob([pdfData], { type: 'application/pdf' });
+
+		  // Create a new anchor element with download attribute
+		  const link = document.createElement('a');
+		  link.href = window.URL.createObjectURL(blob);
+		  link.download = "sample.pdf";
+
+		  // Dispatch a click event on the link element
+		  link.dispatchEvent(new MouseEvent('click'));
+	}
+</script>

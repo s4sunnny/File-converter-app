@@ -27,7 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 "/icon/**").permitAll()
         .antMatchers("/resources/**").permitAll()
         .antMatchers("/searchHtml2Pdf").permitAll()
-        .antMatchers("/searchJpgToPdf").permitAll()
+        .antMatchers("/searchImageToPdfView").permitAll()
         .antMatchers("/searchPdfToJpgView").permitAll()
         .antMatchers("/home").permitAll()
         .anyRequest().authenticated()
@@ -56,10 +56,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 //        .maxSessionsPreventsLogin(true)
 //        .expiredUrl("/login?sessionExpiry=true");
         
-        
+		
 	}
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-	    web.ignoring().antMatchers("/convert-pdf-to-jpg").antMatchers("/getCommonPageForConverted");
+	    web.ignoring().antMatchers("/convert-pdf-to-jpg").antMatchers("/getCommonPageForConverted").antMatchers("/searchImageToPdfView")
+	    .antMatchers("/convertImageToPdf").antMatchers("/getJpgToPdfView");
 	}
 }

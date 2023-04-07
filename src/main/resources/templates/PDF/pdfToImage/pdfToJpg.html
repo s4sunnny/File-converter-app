@@ -164,7 +164,7 @@ function processAndDownloadFile(){
         	});
         	
         	$.ajax({
-                url: "getCommonPageForConverted",
+                url: "getPdfToJpgView",
                 success: function (resp) {
                 	$('#mainJpgDiv').empty();
                 	$('#mainJpgDiv').html(resp);
