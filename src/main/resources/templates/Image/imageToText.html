@@ -130,7 +130,7 @@ function processAndDownloadFile(){
 	}
 	
 	$.ajax({
-        url: "convertImageToPdf",
+        url: "convertImageToText",
         type:"post",
         data: data,
         enctype: 'multipart/form-data',
@@ -148,10 +148,8 @@ function processAndDownloadFile(){
         		  timer: 2000
         	});
         	
-        //const pdfBlob = new Blob([pdfByteArray], { type: 'application/pdf' });
-        	
         	$.ajax({
-                url: "getJpgToPdfView",
+                url: "getImageToTextView",
                 success: function (resp) {
                 	$('#mainJpgDiv').empty();
                 	$('#mainJpgDiv').html(resp);

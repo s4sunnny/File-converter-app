@@ -1,0 +1,42 @@
+<style>
+#convertedImgView {
+	border: solid 3px black;
+	border-radius: 5px;
+}
+</style>
+
+
+
+<div class="content text-center">
+	<div class="row">
+		<div class="col-md-12">
+			<span>Here's is text converted text from PDF</span>
+		</div>
+	</div>
+	<div class="row" id="imagePreview">
+		<div class="col-md-12">
+			<textarea cols="130" rows="10" id="extractedTextFromPdf"></textarea>
+		</div>
+	</div>
+	<div class="float-end">
+		<button class="btn btn-info btn-round" onclick="copyText()"
+			type="submit">Copy text</button>
+	</div>
+</div>
+<br>
+<br>
+<script>
+	function copyText() {
+		  var copyText = document.getElementById("extractedTextFromPdf");
+
+		  copyText.select();
+		  copyText.setSelectionRange(0, 99999);
+		  navigator.clipboard.writeText(copyText.value);
+		  Swal.fire({
+    		  icon: 'success',
+    		  title: 'Copied the text:',
+    		  showConfirmButton: false,
+    		  timer: 2000
+    	});
+	}
+</script>

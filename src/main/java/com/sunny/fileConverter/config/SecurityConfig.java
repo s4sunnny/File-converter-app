@@ -61,6 +61,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 	    web.ignoring().antMatchers("/convert-pdf-to-jpg").antMatchers("/getCommonPageForConverted").antMatchers("/searchImageToPdfView")
-	    .antMatchers("/convertImageToPdf").antMatchers("/getJpgToPdfView");
+	    .antMatchers("/convertImageToPdf").antMatchers("/getJpgToPdfView").antMatchers("/getPdfToTextView").antMatchers("/searchPdfToTextView")
+	    .antMatchers("/convert-pdf-to-text").antMatchers("/getImageToTextView").antMatchers("/searchImageToTextView").antMatchers("/convertImageToText");
 	}
 }

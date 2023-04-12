@@ -53,17 +53,17 @@ border-radius: 5px;
 <div class="container-fluid">
 <div class="container" id="mainJpgDiv">
 <div class="row text-center">
-<span>Upload Image file</span>
+<span>Upload PDF file</span>
 </div>
 	<div class="row">
 		<div class="files col-md-12">
 			<input
-				type="file" class="form-control" id="image-file" multiple="multiple">
+				type="file" class="form-control" id="pdf-file">
 		</div>
 	</div>
 	<br>
 	<div class="row">
-		<div id="image-preview"></div>
+		<div id="pdf-preview" class="text-center" style="width: 100%"></div>
 	</div>
 
 	<br> <br>
@@ -80,64 +80,79 @@ border-radius: 5px;
 </div><br><br>
 <script type="text/javascript">
 
-function processFile(){
-	$('#image-preview').empty();
-    var file = $("#image-file").prop('files')[0];
+//document.getElementById('pdf-file').addEventListener('change', function() {
+	function processFile(){
+	$('#pdf-preview').empty();
+    var file = $("#pdf-file").prop('files')[0];
     var fileName = file.name;
 	var rec = fileName.split(".");
 	var ext = rec[rec.length - 1].toLowerCase();
-	if (ext != "jpg") {
+	if (ext != "pdf") {
 		Swal.fire({
 			  title: 'Error!',
-			  text: 'Incorrect file format. Please upload Image file.',
+			  text: 'Incorrect file format. Please upload PDF file.',
 			  icon: 'error'
 		});
 		return false;
 	}
-	
-	var imageInput = document.getElementById("image-file");
-	var preview = $('#image-preview');
-	  preview.empty();
-	  var files = imageInput.files;
-	  if (files) {
-	    for (let i = 0; i < files.length; i++) {
-	      var file = files[i];
-	      var reader = new FileReader();
-	      reader.addEventListener("load", () => {
-	    	  preview.append('<img style="height:80%; width:40%;" src="' + reader.result + '" alt="Preview Image">');
-	      });
-	      reader.readAsDataURL(file);
-	    }
-	  }
-}
+    var reader = new FileReader();
+    reader.onload = function() {
+        var pdf = new Uint8Array(this.result);
+        displayPDF(pdf);
+    }
+    reader.readAsArrayBuffer(file);
+	}
+//});
 
+function displayPDF(pdf) {
+    var pdfjsLib = window['pdfjs-dist/build/pdf'];
+    pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
+    var loadingTask = pdfjsLib.getDocument({data: pdf});
+    loadingTask.promise.then(function(pdf) {
+        pdf.getPage(1).then(function(page) {
+            var canvas = document.createElement('canvas');
+            var context = canvas.getContext('2d');
+            var viewport = page.getViewport({scale: 1});
+            canvas.height = viewport.height;
+            canvas.width = viewport.width;
+            var renderContext = {
+                canvasContext: context,
+                viewport: viewport
+            };
+            page.render(renderContext).promise.then(function() {
+                document.getElementById('pdf-preview').appendChild(canvas);
+            });
+        });
+    });
+}
 
 function processAndDownloadFile(){
 	var data = new FormData();
-	var pdfFile = $("#image-file").prop('files')[0];
+	var pdfFile = $("#pdf-file").prop('files')[0];
 	var fileName = pdfFile.name;
 	var rec = fileName.split(".");
 	var ext = rec[rec.length - 1].toLowerCase();
-	if (ext != "jpg") {
+	if (ext != "pdf") {
 		Swal.fire({
 			  title: 'Error!',
-			  text: 'Incorrect file format. Please upload Image file.',
+			  text: 'Incorrect file format. Please upload PDF file.',
 			  icon: 'error'
 		});
 		return false;
 	} else {
-		data.append("files", $("#image-file").prop('files')[0]);
+		//var newFile = new File([pdfFile]);
+		data.append("files", $("#pdf-file").prop('files')[0]);
 	}
 	
+	
 	$.ajax({
-        url: "convertImageToPdf",
+        url: "convert-pdf-to-text",
         type:"post",
         data: data,
         enctype: 'multipart/form-data',
         cache: false,
-        processData: false,
         contentType: false,
-        responseType: 'arraybuffer',
+        processData: false,
         method: 'POST',
         type: 'POST',
         success: function (data) {
@@ -147,27 +162,32 @@ function processAndDownloadFile(){
         		  showConfirmButton: false,
         		  timer: 2000
         	});
-        	
-        //const pdfBlob = new Blob([pdfByteArray], { type: 'application/pdf' });
-        	
         	$.ajax({
-                url: "getJpgToPdfView",
+                url: "getPdfToTextView",
                 success: function (resp) {
                 	$('#mainJpgDiv').empty();
                 	$('#mainJpgDiv').html(resp);
-                	$('#pdfData').val(data);
-                	$('#fileLocation').attr("href", data);
-                	$('#convertedImgView').attr("src", data);
+                	$('#extractedTextFromPdf').val(data);
                 },error: function(resp){
                 	console.log("Error");
                 }
         	});
-            //console.log("SUCCESS : ", data);
+        	
+           // $("#result").text(data);
+            console.log("SUCCESS : ", data);
+            //$("#btnSubmit").prop("disabled", false);
+
         },
         error: function (e) {
+
+           //$("#result").text(e.responseText);
             console.log("ERROR : ", e);
+           // $("#btnSubmit").prop("disabled", false);
+
         }
     });
+	
+	
 	
 }
 	

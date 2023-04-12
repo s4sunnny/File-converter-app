@@ -42,4 +42,32 @@ public class RedirectController {
 		return model;
 	}
 	
+	@GetMapping(value = "/getPdfToTextView")
+	public ModelAndView getPdfToTextView(ModelAndView model) {
+
+		model.setViewName("PDF/pdfToText/pdfToTextView");
+		return model;
+	}
+	
+	@GetMapping(value = "/searchPdfToTextView")
+	public ModelAndView searchPdfToTextView(ModelAndView model) {
+
+		model.setViewName("PDF/pdfToText/pdfToText");
+		return model;
+	}
+	
+	@GetMapping(value = "/getImageToTextView")
+	public ModelAndView getImageToTextView(ModelAndView model) {
+
+		model.setViewName("Image/imageToTextView");
+		return model;
+	}
+	
+	@GetMapping(value = "/searchImageToTextView")
+	public ModelAndView searchImageToTextView(ModelAndView model) {
+
+		model.setViewName("Image/imageToText");
+		return model;
+	}
+	
 }
