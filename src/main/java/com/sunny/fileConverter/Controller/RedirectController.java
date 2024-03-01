@@ -70,4 +70,18 @@ public class RedirectController {
 		return model;
 	}
 	
+	@GetMapping(value = "/searchPdfToDocView")
+	public ModelAndView searchPdfToDocView(ModelAndView model) {
+
+		model.setViewName("PDFto/DOC/pdfToDocUpload");
+		return model;
+	}
+	
+//	@GetMapping(value = "/searchImageToTextView")
+//	public ModelAndView searchImageToTextView(ModelAndView model) {
+//
+//		model.setViewName("Image/imageToText");
+//		return model;
+//	}
+	
 }

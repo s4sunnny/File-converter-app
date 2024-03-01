@@ -17,7 +17,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.cors().disable().csrf().and()
 		.authorizeRequests()
         .antMatchers(
-                "/",
+                "/**",
                 "/js/**",
                 "/css/**",
                 "/img/**",
@@ -26,27 +26,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 "/vendor/remixicon/**",
                 "/icon/**").permitAll()
         .antMatchers("/resources/**").permitAll()
-        .antMatchers("/searchHtml2Pdf").permitAll()
-        .antMatchers("/searchImageToPdfView").permitAll()
-        .antMatchers("/searchPdfToJpgView").permitAll()
-        .antMatchers("/home").permitAll()
-        .anyRequest().authenticated()
-        .and()
-        .formLogin()
-        .loginPage("/login").permitAll()
-        .loginProcessingUrl("/doLogin")
-        .defaultSuccessUrl("/dashboard")
-        .failureUrl("/login?error=true")
+//        .antMatchers("/searchHtml2Pdf").permitAll()
+//        .antMatchers("/searchImageToPdfView").permitAll()
+//        .antMatchers("/searchPdfToJpgView").permitAll()
+//        .antMatchers("/home").permitAll()
+        .anyRequest().authenticated();
+//        .and()
+//        .formLogin()
+//        .loginPage("/login").permitAll()
+//        .loginProcessingUrl("/doLogin")
+//        .defaultSuccessUrl("/dashboard")
+//        .failureUrl("/login?error=true")
 //        .failureHandler(mvcConfig.authenticationFailureHandler())
-        .and()
-        .logout()
-        	.deleteCookies("JSESSIONID")
-        	.invalidateHttpSession(true)
-            .clearAuthentication(true)
-        .logoutUrl("/logout")
-        .logoutSuccessUrl("/login?logout=true")
-        .and()
-        .exceptionHandling();
+//        .and()
+//        .logout()
+//        	.deleteCookies("JSESSIONID")
+//        	.invalidateHttpSession(true)
+//            .clearAuthentication(true)
+//        .logoutUrl("/logout")
+//        .logoutSuccessUrl("/login?logout=true")
+//        .and()
+//        .exceptionHandling();
 //            .accessDeniedHandler(accessDeniedHandler)
 //        .and()
 //        .sessionManagement()
