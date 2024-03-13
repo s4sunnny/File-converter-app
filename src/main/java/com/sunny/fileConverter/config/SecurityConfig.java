@@ -46,8 +46,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 //        .logoutUrl("/logout")
 //        .logoutSuccessUrl("/login?logout=true")
 //        .and()
-//        .exceptionHandling();
-//            .accessDeniedHandler(accessDeniedHandler)
+//        .exceptionHandling()
+//            .accessDeniedHandler(accessDeniedHandler);
 //        .and()
 //        .sessionManagement()
 //        .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
