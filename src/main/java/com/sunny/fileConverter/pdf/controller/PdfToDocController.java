@@ -9,18 +9,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.sunny.fileConverter.pdf.service.PdfToJpgService;
+import com.sunny.fileConverter.pdf.service.PdfToDocService;
 
 @RestController
-public class PdfToJpgController {
+public class PdfToDocController {
 
 	@Autowired
-	private PdfToJpgService pdfToJpgService;
+	private PdfToDocService pdfToDocService;
 
-	@PostMapping(value = "/convert-pdf-to-jpg")
-	public ResponseEntity<Object> uploadFile(@RequestParam("files") MultipartFile uploadfile,
-			@RequestParam("type") String fileType) throws IOException {
+	@PostMapping(value = "/convert-pdf-to-Doc")
+	public ResponseEntity<Object> uploadFile(@RequestParam("files") MultipartFile uploadfile) throws IOException {
 
-		return pdfToJpgService.convertPdfToJpg(uploadfile, fileType);
+		return pdfToDocService.convertPdfToDoc(uploadfile);
 	}
 }

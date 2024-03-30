@@ -48,6 +48,11 @@ canvas{
 border: solid 3px black;
 border-radius: 5px;
 }
+#pdf-preview{
+		height:440px;		
+        overflow-y:auto;
+		position:relative;
+}
 </style>
 
 <div class="container-fluid">
@@ -57,12 +62,12 @@ border-radius: 5px;
 </div>
 	<div class="row">
 		<div class="files col-md-12">
-			<input
+			<input onclick="$('#pdf-preview').empty(); $('#previewImage').hide()"
 				type="file" class="form-control" id="pdf-file">
 		</div>
 	</div>
 	<br>
-	<div class="row">
+	<div class="row" id="previewImage" style="display:none">
 		<div id="pdf-preview" class="text-center" style="width: 100%"></div>
 	</div>
 
@@ -95,6 +100,7 @@ border-radius: 5px;
 		});
 		return false;
 	}
+	$('#previewImage').show();
     var reader = new FileReader();
     reader.onload = function() {
         var pdf = new Uint8Array(this.result);
@@ -102,29 +108,6 @@ border-radius: 5px;
     }
     reader.readAsArrayBuffer(file);
 	}
-//});
-
-function displayPDF(pdf) {
-    var pdfjsLib = window['pdfjs-dist/build/pdf'];
-    pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
-    var loadingTask = pdfjsLib.getDocument({data: pdf});
-    loadingTask.promise.then(function(pdf) {
-        pdf.getPage(1).then(function(page) {
-            var canvas = document.createElement('canvas');
-            var context = canvas.getContext('2d');
-            var viewport = page.getViewport({scale: 1});
-            canvas.height = viewport.height;
-            canvas.width = viewport.width;
-            var renderContext = {
-                canvasContext: context,
-                viewport: viewport
-            };
-            page.render(renderContext).promise.then(function() {
-                document.getElementById('pdf-preview').appendChild(canvas);
-            });
-        });
-    });
-}
 
 function processAndDownloadFile(){
 	var data = new FormData();

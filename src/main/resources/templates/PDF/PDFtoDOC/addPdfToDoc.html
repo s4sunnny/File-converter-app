@@ -60,18 +60,10 @@ border-radius: 5px;
 <div class="container-fluid">
 <div class="container" id="mainJpgDiv">
 <div class="row text-center">
-<span>Upload PDF file to convert it in image</span>
+<span>Upload PDF file to convert it in Doc</span>
 </div>
 
 <div class="row mb-4">
-<div class="col-md-4">
-<label>Select Image type</label>
-		<select id="imageType" class="form-select" >
-			<option value="jpg">JPG</option>
-			<option value="jpeg">JPEG</option>
-			<option value="png">PNG</option>
-		</select>
-</div>
 
 	</div>
 	<div class="row">
@@ -138,12 +130,11 @@ function processAndDownloadFile(){
 	} else {
 		//var newFile = new File([pdfFile]);
 		data.append("files", $("#pdf-file").prop('files')[0]);
-		data.append("type", $('#imageType').val())
 	}
 	
 	showLoading()
 	$.ajax({
-        url: "convert-pdf-to-jpg",
+        url: "convert-pdf-to-Doc",
         type:"post",
         data: data,
         enctype: 'multipart/form-data',
@@ -163,11 +154,9 @@ function processAndDownloadFile(){
         	$.ajax({
                 url: "getPdfToJpgView",
                 success: function (resp) {
-                	var type = $('#imageType').val();
                 	$('#mainJpgDiv').empty();
                 	$('#mainJpgDiv').html(resp);
                 	$('#imageData').val(data);
-                	$('#imgType').val(type);
                 	$('#fileLocation').attr("href", data);
                 	$('#convertedImgView').attr("src", data);
                 	hideLoading();

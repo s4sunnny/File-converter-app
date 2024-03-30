@@ -3,6 +3,11 @@
 	border: solid 3px black;
 	border-radius: 5px;
 }
+#imagePreview{
+		height:440px;		
+        overflow-y:auto;
+		position:relative;
+}
 </style>
 
 
@@ -10,6 +15,7 @@
 <div class="content text-center">
 	<a style="display: none;" id="fileLocation" href=""></a>
 	<input type="hidden" id="imageData">
+	<input type="hidden" id="imgType">
 	<div class="row">
 		<div class="col-md-12">
 			<span>Please click on the below link to download your
@@ -40,7 +46,7 @@ function downloadImage(){
 	    byteNumbers[i] = byteCharacters.charCodeAt(i);
 	  }
 	  var byteArray = new Uint8Array(byteNumbers);
-	  var blob = new Blob([byteArray], { type: 'image/jpg' });
+	  var blob = new Blob([byteArray], { type: 'image/'+$('#imgType').val() });
 
 	  // Create a URL to download the image
 	  var url = URL.createObjectURL(blob);
@@ -48,7 +54,7 @@ function downloadImage(){
 	  // Create a link and click it to download the image
 	  var link = document.createElement('a');
 	  link.href = url;
-	  link.download = 'image.jpg';
+	  link.download = 'image.'+$('#imgType').val();
 	  document.body.appendChild(link);
 	  link.click();
 	  document.body.removeChild(link);

@@ -28,42 +28,42 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 public class PdfToJpgService {
 
-	public ResponseEntity<Object> convertPdfToJpg(MultipartFile uploadfile) throws IOException {
+	public ResponseEntity<Object> convertPdfToJpg(MultipartFile uploadfile, String fileType) throws IOException {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		byte[] imageData = null;
-		 try {
-	            // Load the PDF document
-	            File file = new File(uploadfile.getOriginalFilename());
-	            try (OutputStream os = new FileOutputStream(file)) {
-	                os.write(uploadfile.getBytes());
-	            }
-	            PDDocument document = PDDocument.load(file);
-	            // Validate the PDF document
-	            if (!document.isEncrypted() && document.getNumberOfPages() > 0) {
-	                // Convert each page to a JPG image
-	                PDFRenderer renderer = new PDFRenderer(document);
-	                for (int i = 0; i < document.getNumberOfPages(); i++) {
-	                    BufferedImage image = renderer.renderImage(i, 1.0f);
-	                    ImageIO.write(image, "jpeg", baos);
-	                    imageData = baos.toByteArray();
-	                }
-	            }
+		try {
+			// Load the PDF document
+			File file = new File(uploadfile.getOriginalFilename());
+			try (OutputStream os = new FileOutputStream(file)) {
+				os.write(uploadfile.getBytes());
+			}
+			PDDocument document = PDDocument.load(file);
+			// Validate the PDF document
+			if (!document.isEncrypted() && document.getNumberOfPages() > 0) {
+				// Convert each page to a JPG image
+				PDFRenderer renderer = new PDFRenderer(document);
+				for (int i = 0; i < document.getNumberOfPages(); i++) {
+					BufferedImage image = renderer.renderImage(i, 1.0f);
+					ImageIO.write(image, fileType, baos);
+					imageData = baos.toByteArray();
+				}
+			}
 
-	            // Close the PDF document
-	            document.close();
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	        }
+			// Close the PDF document
+			document.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 //		 ByteArrayInputStream bais = new ByteArrayInputStream(imageData);
 //		 InputStreamResource fileInputStream = new InputStreamResource(bais);
-		 HttpHeaders headers = new HttpHeaders();
-			headers.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=");
-			// defining the custom Content-Type
-			headers.set(HttpHeaders.CONTENT_TYPE, "image/jpeg");
+		HttpHeaders headers = new HttpHeaders();
+		headers.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=");
+		// defining the custom Content-Type
+		headers.set(HttpHeaders.CONTENT_TYPE, "image/jpeg");
 
-			String base64Image = Base64.getEncoder().encodeToString(imageData);
-			String responseData = "data:image/jpg;base64," + base64Image;
-			return new ResponseEntity<>(responseData, headers, HttpStatus.OK);
+		String base64Image = Base64.getEncoder().encodeToString(imageData);
+		String responseData = "data:image/" + fileType + ";base64," + base64Image;
+		return new ResponseEntity<>(responseData, headers, HttpStatus.OK);
 	}
 
 }

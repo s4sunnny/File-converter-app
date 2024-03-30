@@ -10,7 +10,7 @@
   <title>File converter</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
-
+<link rel="stylesheet" th:href="@{css/jquery.loadingModal.css}">
   <!-- Favicons -->
   <!-- <link th:href="@{resources/img/favicon.png" rel="icon"> -->
   <link th:href="@{/img/apple-touch-icon.png}" rel="apple-touch-icon">
@@ -891,11 +891,21 @@
   <script th:src="@{/js/isotope.pkgd.min.js}"></script>
   <script th:src="@{/js/swiper-bundle.min.js}"></script>
   <script th:src="@{/vendor/php-email-form/validate.js}"></script>
+<script th:src="@{/js/jquery.loadingModal.js}"></script>
 
   <!-- Template Main JS File -->
   <script th:src="@{/js/main.js}"></script>
 
 <script type="text/javascript">
+function showLoading() {
+	$('body').loadingModal({text: 'Please wait...'});
+	$('body').loadingModal('animation', 'circle').loadingModal('backgroundColor', 'black');
+}
+
+function hideLoading() {
+	 $('body').loadingModal('hide');
+	 $('body').loadingModal('destroy')
+}
 function openURL(url) {
 	
 	//showLoading();

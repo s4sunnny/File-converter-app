@@ -73,15 +73,8 @@ public class RedirectController {
 	@GetMapping(value = "/searchPdfToDocView")
 	public ModelAndView searchPdfToDocView(ModelAndView model) {
 
-		model.setViewName("PDFto/DOC/pdfToDocUpload");
+		model.setViewName("PDF/PDFtoDOC/addPdfToDoc");
 		return model;
 	}
-	
-//	@GetMapping(value = "/searchImageToTextView")
-//	public ModelAndView searchImageToTextView(ModelAndView model) {
-//
-//		model.setViewName("Image/imageToText");
-//		return model;
-//	}
 	
 }

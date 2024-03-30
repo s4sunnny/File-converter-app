@@ -25,12 +25,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 "/fonts/**",
                 "/vendor/remixicon/**",
                 "/icon/**").permitAll()
-        .antMatchers("/resources/**").permitAll()
-//        .antMatchers("/searchHtml2Pdf").permitAll()
-//        .antMatchers("/searchImageToPdfView").permitAll()
-//        .antMatchers("/searchPdfToJpgView").permitAll()
-//        .antMatchers("/home").permitAll()
-        .anyRequest().authenticated();
+        .antMatchers("/resources/**").permitAll();
 //        .and()
 //        .formLogin()
 //        .loginPage("/login").permitAll()
