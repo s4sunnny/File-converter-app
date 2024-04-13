@@ -131,8 +131,7 @@ function processAndDownloadFile(){
 		//var newFile = new File([pdfFile]);
 		data.append("files", $("#pdf-file").prop('files')[0]);
 	}
-	
-	showLoading()
+	showLoading();
 	$.ajax({
         url: "convert-pdf-to-Doc",
         type:"post",

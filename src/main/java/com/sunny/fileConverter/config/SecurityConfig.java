@@ -17,7 +17,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.cors().disable().csrf().and()
 		.authorizeRequests()
         .antMatchers(
-                "/**",
+                "/",
                 "/js/**",
                 "/css/**",
                 "/img/**",
@@ -26,6 +26,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 "/vendor/remixicon/**",
                 "/icon/**").permitAll()
         .antMatchers("/resources/**").permitAll();
+//        .antMatchers("/searchHtml2Pdf").permitAll()
+//        .antMatchers("/searchImageToPdfView").permitAll()
+//        .antMatchers("/searchPdfToJpgView").permitAll()
+//        .antMatchers("/home").permitAll();
+//        .anyRequest().authenticated();
 //        .and()
 //        .formLogin()
 //        .loginPage("/login").permitAll()
@@ -55,8 +60,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	}
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-	    web.ignoring().antMatchers("/convert-pdf-to-jpg").antMatchers("/getCommonPageForConverted").antMatchers("/searchImageToPdfView")
-	    .antMatchers("/convertImageToPdf").antMatchers("/getJpgToPdfView").antMatchers("/getPdfToTextView").antMatchers("/searchPdfToTextView")
-	    .antMatchers("/convert-pdf-to-text").antMatchers("/getImageToTextView").antMatchers("/searchImageToTextView").antMatchers("/convertImageToText");
+	    web.ignoring().antMatchers("/**");
+//	    .antMatchers("/convert-pdf-to-jpg").antMatchers("/getCommonPageForConverted").antMatchers("/searchImageToPdfView")
+//	    .antMatchers("/convertImageToPdf").antMatchers("/getJpgToPdfView").antMatchers("/getPdfToTextView").antMatchers("/searchPdfToTextView")
+//	    .antMatchers("/convert-pdf-to-text").antMatchers("/getImageToTextView").antMatchers("/searchImageToTextView").antMatchers("/convertImageToText");
 	}
 }
