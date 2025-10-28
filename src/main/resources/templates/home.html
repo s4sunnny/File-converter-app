@@ -1,922 +1,362 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
->
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-	
-
-  <title>File converter</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
-<link rel="stylesheet" th:href="@{css/jquery.loadingModal.css}">
-  <!-- Favicons -->
-  <!-- <link th:href="@{resources/img/favicon.png" rel="icon"> -->
-  <link th:href="@{/img/apple-touch-icon.png}" rel="apple-touch-icon">
-  <link rel="icon" type="image/png" th:href="@{images/title_logo.png}">
-
-  <!-- Vendor CSS Files -->
-  <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
-  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/smoothness/jquery-ui.css">
-  <link th:href="@{/css/bootstrap-icons.css}" rel="stylesheet"/>
-  <link th:href="@{/css/boxicons.min.css}" rel="stylesheet"/>
-  <link th:href="@{/css/glightbox.min.css}" rel="stylesheet"/>
-  <link th:href="@{/vendor/remixicon/remixicon.css}" rel="stylesheet"/>
-  <link th:href="@{/css/swiper-bundle.min.css}" rel="stylesheet"/>
-
-  <!-- Template Main CSS File -->
-  <link th:href="@{/css/style.css}" rel="stylesheet"/>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script th:src="@{/js/tailwind.js}"></script>
+<script th:src="@{/js/main.js}"></script>
+<script th:src="@{/js/font-awesome-all.min.js}"></script>
+<link
+	href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+	rel="stylesheet">
 </head>
+<body class="bg-gray-50">
+
+	<!-- Header -->
+	<header id="header"
+		class="bg-white shadow-sm border-b border-gray-100 sticky top-0 z-50">
+		<div class="max-w-7xl mx-auto px-6">
+			<div class="flex items-center justify-between h-16">
+				<div class="flex items-center space-x-12">
+					<div class="flex items-center space-x-2">
+						<div
+							class="w-8 h-8 rounded-lg gradient-bg flex items-center justify-center">
+							<i class="fas fa-exchange-alt text-white text-sm"></i>
+						</div>
+						<span class="text-xl font-bold text-gray-900">FileFlow</span>
+					</div>
+					<nav class="hidden md:flex space-x-6">
+						<span
+							class="text-gray-600 hover:text-primary transition-colors cursor-pointer"><a
+							th:href="@{/tools}">Tools</a></span> <span
+							class="text-gray-600 hover:text-primary transition-colors cursor-pointer">Features</span>
+						<span
+							class="text-gray-600 hover:text-primary transition-colors cursor-pointer">Pricing</span>
+						<span
+							class="text-gray-600 hover:text-primary transition-colors cursor-pointer">Help</span>
+					</nav>
+				</div>
+				<!-- <div class="flex items-center space-x-4">
+					<button class="text-gray-600 hover:text-primary transition-colors">
+						<i class="fas fa-moon"></i>
+					</button>
+					<button
+						class="text-gray-600 hover:text-primary px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors">
+						Log In</button>
+					<button
+						class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+						Sign Up</button>
+				</div> -->
+			</div>
+		</div>
+	</header>
+
+	<!-- Hero Section -->
+	<section id="hero"
+		class="bg-gradient-to-br from-blue-50 to-indigo-100 py-20 h-[600px] flex items-center">
+		<div class="max-w-7xl mx-auto px-6">
+			<div class="grid lg:grid-cols-2 gap-12 items-center">
+				<div>
+					<h1 class="text-5xl font-bold text-gray-900 mb-6 leading-tight">
+						Convert, Edit & Manage Files <span class="text-primary">Effortlessly</span>
+					</h1>
+					<p class="text-xl text-gray-600 mb-8">Transform any file format
+						in seconds. PDF, DOC, JPG, PNG and more. No downloads, no
+						registration required.</p>
+					<div class="flex space-x-4">
+						<button
+							class="bg-primary text-white px-8 py-4 rounded-xl hover:bg-blue-600 transition-all hover-lift font-semibold">
+							Start Converting</button>
+						<button
+							class="border border-gray-300 text-gray-700 px-8 py-4 rounded-xl hover:bg-gray-50 transition-all hover-lift font-semibold">
+							View All Tools</button>
+					</div>
+				</div>
+				<div class="relative">
+					<div class="glassmorphism rounded-2xl p-8 shadow-xl">
+						<img class="w-full h-64 object-cover rounded-lg"
+							src="https://storage.googleapis.com/uxpilot-auth.appspot.com/4af4022260-2d56d8436b9ab3bc8010.png"
+							alt="modern file conversion interface with drag and drop area, colorful file icons floating, clean UI design" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Upload Section -->
+	<section id="upload-section" class="py-16 bg-white">
+		<div class="max-w-4xl mx-auto px-6">
+			<div class="text-center mb-12">
+				<h2 class="text-3xl font-bold text-gray-900 mb-4">Upload Your
+					File</h2>
+				<p class="text-gray-600">Drag and drop or click to select files</p>
+			</div>
+			<div
+				class="border-2 border-dashed border-gray-300 rounded-2xl p-12 text-center hover:border-primary transition-colors cursor-pointer bg-gray-50 hover:bg-blue-50">
+				<div class="mb-6">
+					<i class="fas fa-cloud-upload-alt text-6xl text-gray-400"></i>
+				</div>
+				<h3 class="text-xl font-semibold text-gray-700 mb-2">Choose
+					files or drag them here</h3>
+				<p class="text-gray-500 mb-6">Supports PDF, DOC, JPG, PNG, PPT,
+					XLS and more</p>
+				<button
+					class="bg-primary text-white px-8 py-3 rounded-lg hover:bg-blue-600 transition-colors font-semibold">
+					Select Files</button>
+			</div>
+		</div>
+	</section>
+
+	<!-- Quick Access Tools -->
+	<section id="quick-tools" class="py-16 bg-gray-50">
+		<div class="max-w-7xl mx-auto px-6">
+			<div class="text-center mb-12">
+				<h2 class="text-3xl font-bold text-gray-900 mb-4">Popular
+					Conversions</h2>
+				<p class="text-gray-600">Quick access to most used tools</p>
+			</div>
+			<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+				<div
+					class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all hover-lift cursor-pointer border border-gray-100">
+					<div
+						class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
+						<i class="fas fa-file-pdf text-red-600 text-xl"></i>
+					</div>
+					<h3 class="font-semibold text-gray-900 mb-2">PDF to Word</h3>
+					<p class="text-gray-600 text-sm">Convert PDF to editable DOC</p>
+				</div>
+				<div
+					class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all hover-lift cursor-pointer border border-gray-100">
+					<div
+						class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+						<i class="fas fa-file-word text-blue-600 text-xl"></i>
+					</div>
+					<h3 class="font-semibold text-gray-900 mb-2">Word to PDF</h3>
+					<p class="text-gray-600 text-sm">Convert DOC to PDF format</p>
+				</div>
+				<div
+					class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all hover-lift cursor-pointer border border-gray-100">
+					<div
+						class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+						<i class="fas fa-image text-green-600 text-xl"></i>
+					</div>
+					<h3 class="font-semibold text-gray-900 mb-2">JPG to PDF</h3>
+					<p class="text-gray-600 text-sm">Convert images to PDF</p>
+				</div>
+				<div
+					class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all hover-lift cursor-pointer border border-gray-100">
+					<div
+						class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+						<i class="fas fa-compress-alt text-purple-600 text-xl"></i>
+					</div>
+					<h3 class="font-semibold text-gray-900 mb-2">Compress PDF</h3>
+					<p class="text-gray-600 text-sm">Reduce PDF file size</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Featured Features -->
+	<section id="features" class="py-16 bg-white">
+		<div class="max-w-7xl mx-auto px-6">
+			<div class="text-center mb-12">
+				<h2 class="text-3xl font-bold text-gray-900 mb-4">Powerful File
+					Tools</h2>
+				<p class="text-gray-600">Everything you need to work with files</p>
+			</div>
+			<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+				<div class="text-center">
+					<div
+						class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+						<i class="fas fa-exchange-alt text-blue-600 text-2xl"></i>
+					</div>
+					<h3 class="text-xl font-semibold text-gray-900 mb-3">Convert</h3>
+					<p class="text-gray-600">Transform files between 100+ formats
+						instantly</p>
+				</div>
+				<div class="text-center">
+					<div
+						class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+						<i class="fas fa-edit text-green-600 text-2xl"></i>
+					</div>
+					<h3 class="text-xl font-semibold text-gray-900 mb-3">Edit</h3>
+					<p class="text-gray-600">Modify text, images, and layouts with
+						ease</p>
+				</div>
+				<div class="text-center">
+					<div
+						class="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+						<i class="fas fa-layer-group text-purple-600 text-2xl"></i>
+					</div>
+					<h3 class="text-xl font-semibold text-gray-900 mb-3">Merge</h3>
+					<p class="text-gray-600">Combine multiple files into one
+						document</p>
+				</div>
+				<div class="text-center">
+					<div
+						class="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+						<i class="fas fa-cut text-red-600 text-2xl"></i>
+					</div>
+					<h3 class="text-xl font-semibold text-gray-900 mb-3">Split</h3>
+					<p class="text-gray-600">Extract pages or split files into
+						parts</p>
+				</div>
+				<div class="text-center">
+					<div
+						class="w-16 h-16 bg-yellow-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+						<i class="fas fa-compress-arrows-alt text-yellow-600 text-2xl"></i>
+					</div>
+					<h3 class="text-xl font-semibold text-gray-900 mb-3">Compress</h3>
+					<p class="text-gray-600">Reduce file sizes without quality loss</p>
+				</div>
+				<div class="text-center">
+					<div
+						class="w-16 h-16 bg-indigo-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+						<i class="fas fa-shield-alt text-indigo-600 text-2xl"></i>
+					</div>
+					<h3 class="text-xl font-semibold text-gray-900 mb-3">Protect</h3>
+					<p class="text-gray-600">Add passwords and secure your
+						documents</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Supported Formats -->
+	<section id="formats" class="py-16 bg-gray-50">
+		<div class="max-w-7xl mx-auto px-6">
+			<div class="text-center mb-12">
+				<h2 class="text-3xl font-bold text-gray-900 mb-4">Supported
+					File Formats</h2>
+				<p class="text-gray-600">Work with all popular file types</p>
+			</div>
+			<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-6">
+				<div
+					class="bg-white rounded-lg p-4 text-center shadow-sm hover:shadow-md transition-all hover-lift">
+					<i class="fas fa-file-pdf text-red-500 text-2xl mb-2"></i>
+					<p class="text-sm font-medium text-gray-700">PDF</p>
+				</div>
+				<div
+					class="bg-white rounded-lg p-4 text-center shadow-sm hover:shadow-md transition-all hover-lift">
+					<i class="fas fa-file-word text-blue-500 text-2xl mb-2"></i>
+					<p class="text-sm font-medium text-gray-700">DOC</p>
+				</div>
+				<div
+					class="bg-white rounded-lg p-4 text-center shadow-sm hover:shadow-md transition-all hover-lift">
+					<i class="fas fa-file-powerpoint text-orange-500 text-2xl mb-2"></i>
+					<p class="text-sm font-medium text-gray-700">PPT</p>
+				</div>
+				<div
+					class="bg-white rounded-lg p-4 text-center shadow-sm hover:shadow-md transition-all hover-lift">
+					<i class="fas fa-file-excel text-green-500 text-2xl mb-2"></i>
+					<p class="text-sm font-medium text-gray-700">XLS</p>
+				</div>
+				<div
+					class="bg-white rounded-lg p-4 text-center shadow-sm hover:shadow-md transition-all hover-lift">
+					<i class="fas fa-image text-purple-500 text-2xl mb-2"></i>
+					<p class="text-sm font-medium text-gray-700">JPG</p>
+				</div>
+				<div
+					class="bg-white rounded-lg p-4 text-center shadow-sm hover:shadow-md transition-all hover-lift">
+					<i class="fas fa-image text-teal-500 text-2xl mb-2"></i>
+					<p class="text-sm font-medium text-gray-700">PNG</p>
+				</div>
+				<div
+					class="bg-white rounded-lg p-4 text-center shadow-sm hover:shadow-md transition-all hover-lift">
+					<i class="fas fa-file-alt text-gray-500 text-2xl mb-2"></i>
+					<p class="text-sm font-medium text-gray-700">TXT</p>
+				</div>
+				<div
+					class="bg-white rounded-lg p-4 text-center shadow-sm hover:shadow-md transition-all hover-lift">
+					<i class="fas fa-file-archive text-yellow-500 text-2xl mb-2"></i>
+					<p class="text-sm font-medium text-gray-700">ZIP</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- CTA Section -->
+	<!-- <section id="cta" class="py-20 gradient-bg">
+		<div class="max-w-4xl mx-auto px-6 text-center">
+			<h2 class="text-4xl font-bold text-white mb-6">Ready to
+				Transform Your Files?</h2>
+			<p class="text-xl text-blue-100 mb-8">Join millions of users who
+				trust FileFlow for their file conversion needs</p>
+			<button
+				class="bg-white text-primary px-8 py-4 rounded-xl hover:bg-gray-100 transition-all hover-lift font-semibold text-lg">
+				Get Started Free</button>
+		</div>
+	</section> -->
+
+	<!-- Footer -->
+	<footer id="footer" class="bg-gray-900 text-white py-12">
+		<div class="max-w-7xl mx-auto px-6">
+			<div class="grid md:grid-cols-4 gap-8">
+				<div>
+					<div class="flex items-center space-x-2 mb-4">
+						<div
+							class="w-8 h-8 rounded-lg gradient-bg flex items-center justify-center">
+							<i class="fas fa-exchange-alt text-white text-sm"></i>
+						</div>
+						<span class="text-xl font-bold">FileFlow</span>
+					</div>
+					<p class="text-gray-400">The ultimate file conversion and
+						editing platform.</p>
+				</div>
+				<div>
+					<h3 class="font-semibold mb-4">Tools</h3>
+					<ul class="space-y-2 text-gray-400">
+						<li><span
+							class="hover:text-white transition-colors cursor-pointer">PDF
+								Tools</span></li>
+						<li><span
+							class="hover:text-white transition-colors cursor-pointer">Image
+								Tools</span></li>
+						<li><span
+							class="hover:text-white transition-colors cursor-pointer">Document
+								Tools</span></li>
+						<li><span
+							class="hover:text-white transition-colors cursor-pointer">Compression</span></li>
+					</ul>
+				</div>
+				<div>
+					<h3 class="font-semibold mb-4">Company</h3>
+					<ul class="space-y-2 text-gray-400">
+						<li><span
+							class="hover:text-white transition-colors cursor-pointer">About
+								Us</span></li>
+						<li><span
+							class="hover:text-white transition-colors cursor-pointer">Privacy
+								Policy</span></li>
+						<li><span
+							class="hover:text-white transition-colors cursor-pointer">Terms
+								of Service</span></li>
+						<li><span
+							class="hover:text-white transition-colors cursor-pointer">Contact</span></li>
+					</ul>
+				</div>
+				<div>
+					<h3 class="font-semibold mb-4">Follow Us</h3>
+					<div class="flex space-x-4">
+						<span
+							class="text-gray-400 hover:text-white transition-colors cursor-pointer">
+							<i class="fab fa-twitter text-xl"></i>
+						</span> <span
+							class="text-gray-400 hover:text-white transition-colors cursor-pointer">
+							<i class="fab fa-facebook text-xl"></i>
+						</span> <span
+							class="text-gray-400 hover:text-white transition-colors cursor-pointer">
+							<i class="fab fa-linkedin text-xl"></i>
+						</span>
+					</div>
+				</div>
+			</div>
+			<div
+				class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+				<p>&copy; 2024 FileFlow. All rights reserved.</p>
+			</div>
+		</div>
+	</footer>
 
-<body>
-
-  <!-- ======= Header ======= -->
-  <div class="row">
-  <header id="header" class="">
-    <div class="container d-flex align-items-center justify-content-between">
-
-      <h1 class="logo"><a th:href="@{/home}">File Convo.</a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link" th:href="@{/home}">Home</a></li>
-          <li><a class="nav-link " href="#about">About</a></li>
-          <!-- <li><a class="nav-link " href="#services">Services</a></li> -->
-          <li class="dropdown"><a href="#"><span>PDF to</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-                  <li><a href="javascript: openURL('searchPdfToJpgView')">Image</a></li>
-                  <li><a href="javascript: openURL('searchPdfToTextView')">Text</a></li>
-                  <li><a href="javascript: openURL('searchPdfToDocView')">DOC</a></li>
-                  <li><a href="javascript: openURL('searchPdfToPptView')">PPT</a></li>
-                  <li><a href="javascript: openURL('searchPdfToCsvView')">CSV</a></li>
-                  <li><a href="javascript: openURL('searchPdfToExcelView')">Excel</a></li>
-            </ul>
-          </li>
-
-          <li class="dropdown"><a href="#"><span>Image to</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-                  <li><a href="javascript: openURL('searchImageToPdfView')">PDF</a></li>
-                  <li><a href="javascript: openURL('searchImageToTextView')">Text</a></li>
-                  <li><a href="javascript: openURL('searchImageToDocView')">DOC</a></li>
-                  <li><a href="javascript: openURL('searchImageToPptView')">PPT</a></li>
-                  <li><a href="javascript: openURL('searchImageToCsvView')">CSV</a></li>
-                  <li><a href="javascript: openURL('searchImageToExcelView')">Excel</a></li>
-            </ul>
-          </li>
-          
-          <li class="dropdown"><a href="#"><span>Doc to</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-                  <li><a href="javascript: openURL('searchImageToPdfView')">PDF</a></li>
-                  <li><a href="javascript: openURL('searchImageToTextView')">Text</a></li>
-                  <li><a href="javascript: openURL('searchImageToDocView')">Image</a></li>
-                  <li><a href="javascript: openURL('searchImageToPptView')">PPT</a></li>
-                  <li><a href="javascript: openURL('searchImageToCsvView')">CSV</a></li>
-                  <li><a href="javascript: openURL('searchImageToExcelView')">Excel</a></li>
-            </ul>
-          </li>
-          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-          <!-- <li><a class="getstarted scrollto" href="#about">Get Started</a></li> -->
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-
-    </div>
-  </header><br><!-- End Header -->
-</div><br/><br/>
-<div class="row mt-5">
-  <main id="main">
-  <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex align-items-center">
-
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-6 pt-2 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
-          <h1>Easy Marketing Solutions For Your Business</h1>
-          <!-- <ul>
-            <li><i class="ri-check-line"></i> Dolorem ratione dolorum</li>
-            <li><i class="ri-check-line"></i> Quo nihil natus ea non pariatur optio occaecati</li>
-            <li><i class="ri-check-line"></i> Duis aute irure dolor in reprehenderit in</li>
-          </ul> -->
-          <div class="mt-3">
-            <a href="#about" class="btn-get-started scrollto">Get Started</a>
-            <a href="" class="btn-get-quote">Request a Quote</a>
-          </div>
-        </div>
-        <div class="col-lg-6 order-1 order-lg-2 hero-img">
-          <img src="assets/img/hero-img.png" class="img-fluid" alt="">
-        </div>
-      </div>
-    </div>
-
-  </section><!-- End Hero -->
-    <!-- ======= About Section ======= -->
-    <section id="about" class="about">
-      <div class="container">
-
-        <div class="row content">
-          <div class="col-lg-6">
-            <!-- <h2>Eum ipsam laborum deleniti velitena</h2>
-            <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assum perenda sruen jonee trave</h3> -->
-          </div>
-          <div class="col-lg-6 pt-4 pt-lg-0">
-            <!-- <p>
-              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-              culpa qui officia deserunt mollit anim id est laborum
-            </p> -->
-            <!-- <ul>
-              <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequa</li>
-              <li><i class="ri-check-double-line"></i> Duis aute irure dolor in reprehenderit in voluptate velit</li>
-              <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in</li>
-            </ul>
-            <p class="fst-italic">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua.
-            </p> -->
-          </div>
-        </div>
-
-      </div>
-    </section><!-- End About Section -->
-
-    <!-- ======= Why Us Section ======= -->
-    <section id="why-us" class="why-us">
-      <div class="container">
-
-        <div class="row">
-
-          <div class="col-lg-4">
-            <div class="box">
-              <!-- <span>01</span>
-              <h4>Lorem Ipsum</h4>
-              <p>Ulamco laboris nisi ut aliquip ex ea commodo consequat. Et consectetur ducimus vero placeat</p> -->
-            </div>
-          </div>
-
-          <div class="col-lg-4 mt-4 mt-lg-0">
-            <div class="box">
-              <!-- <span>02</span>
-              <h4>Repellat Nihil</h4>
-              <p>Dolorem est fugiat occaecati voluptate velit esse. Dicta veritatis dolor quod et vel dire leno para dest</p> -->
-            </div>
-          </div>
-
-          <div class="col-lg-4 mt-4 mt-lg-0">
-            <div class="box">
-              <!-- <span>03</span>
-              <h4> Ad ad velit qui</h4>
-              <p>Molestiae officiis omnis illo asperiores. Aut doloribus vitae sunt debitis quo vel nam quis</p> -->
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- End Why Us Section -->
-
-    <!-- ======= Counts Section ======= -->
-    <section id="counts" class="counts section-bg">
-      <div class="container">
-
-        <div class="row">
-
-          <div class="col-lg-3 col-md-6">
-            <div class="count-box">
-              <!-- <i class="bi bi-emoji-smile"></i>
-              <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
-              <p>Happy Clients</p> -->
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
-            <div class="count-box">
-              <!-- <i class="bi bi-journal-richtext"></i>
-              <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
-              <p>Projects</p> -->
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
-            <div class="count-box">
-             <!--  <i class="bi bi-headset"></i>
-              <span data-purecounter-start="0" data-purecounter-end="1463" data-purecounter-duration="1" class="purecounter"></span>
-              <p>Hours Of Support</p> -->
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
-            <div class="count-box">
-              <!-- <i class="bi bi-people"></i>
-              <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1" class="purecounter"></span>
-              <p>Hard Workers</p> -->
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- End Counts Section -->
-
-    <!-- ======= Services Section ======= -->
-    <section id="services" class="services">
-      <div class="container">
-
-        <div class="section-title">
-          <!-- <h2>Services</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-        --> </div>
-
-        <div class="row">
-          <div class="content col-xl-5 d-flex flex-column justify-content-center">
-            <img src="assets/img/services.png" class="img-fluid" alt="">
-          </div>
-          <div class="col-xl-7">
-            <div class="icon-boxes d-flex flex-column justify-content-center">
-              <div class="row">
-                <div class="col-lg-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-                  <div class="icon-box iconbox-blue">
-                    <div class="icon">
-                      <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,521.0016835830174C376.1290562159157,517.8887921683347,466.0731472004068,529.7835943286574,510.70327084640275,468.03025145048787C554.3714126377745,407.6079735673963,508.03601936045806,328.9844924480964,491.2728898941984,256.3432110539036C474.5976632858925,184.082847569629,479.9380746630129,96.60480741107993,416.23090153303,58.64404602377083C348.86323505073057,18.502131276798302,261.93793281208167,40.57373210992963,193.5410806939664,78.93577620505333C130.42746243093433,114.334589627462,98.30271207620316,179.96522072025542,76.75703585869454,249.04625023123273C51.97151888228291,328.5150500222984,13.704378332031375,421.85034740162234,66.52175969318436,486.19268352777647C119.04800174914682,550.1803526380478,217.28368757567262,524.383925680826,300,521.0016835830174"></path>
-                      </svg>
-                      <i class="bx bxl-dribbble"></i>
-                    </div>
-                   <!--  <h4><a href="">Lorem Ipsum</a></h4>
-                    <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p> -->
-                  </div>
-                </div>
-
-                <div class="col-lg-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="200">
-                  <div class="icon-box iconbox-orange ">
-                    <div class="icon">
-                      <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,582.0697525312426C382.5290701553225,586.8405444964366,449.9789794690241,525.3245884688669,502.5850820975895,461.55621195738473C556.606425686781,396.0723002908107,615.8543463187945,314.28637112970534,586.6730223649479,234.56875336149918C558.9533121215079,158.8439757836574,454.9685369536778,164.00468322053177,381.49747125262974,130.76875717737553C312.15926192815925,99.40240125094834,248.97055460311594,18.661163978235184,179.8680185752513,50.54337015887873C110.5421016452524,82.52863877960104,119.82277516462835,180.83849132639028,109.12597500060166,256.43424936330496C100.08760227029461,320.3096726198365,92.17705696193138,384.0621239912766,124.79988738764834,439.7174275375508C164.83382741302287,508.01625554203684,220.96474134820875,577.5009287672846,300,582.0697525312426"></path>
-                      </svg>
-                      <i class="bx bx-file"></i>
-                    </div>
-                    <!-- <h4><a href="">Sed Perspiciatis</a></h4>
-                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p> -->
-                  </div>
-                </div>
-
-                <div class="col-lg-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="300">
-                  <div class="icon-box iconbox-pink">
-                    <div class="icon">
-                      <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,541.5067337569781C382.14930387511276,545.0595476570109,479.8736841581634,548.3450877840088,526.4010558755058,480.5488172755941C571.5218469581645,414.80211281144784,517.5187510058486,332.0715597781072,496.52539010469104,255.14436215662573C477.37192572678356,184.95920475031193,473.57363656557914,105.61284051026155,413.0603344069578,65.22779650032875C343.27470386102294,18.654635553484475,251.2091493199835,5.337323636656869,175.0934190732945,40.62881213300186C97.87086631185822,76.43348514350839,51.98124368387456,156.15599469081315,36.44837278890362,239.84606092416172C21.716077023791087,319.22268207091537,43.775223500013084,401.1760424656574,96.891909868211,461.97329694683043C147.22146801428983,519.5804099606455,223.5754009179313,538.201503339737,300,541.5067337569781"></path>
-                      </svg>
-                      <i class="bx bx-tachometer"></i>
-                    </div>
-                    <!-- <h4><a href="">Magni Dolores</a></h4>
-                    <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p> -->
-                  </div>
-                </div>
-
-               <!--  <div class="col-lg-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="100">
-                  <div class="icon-box iconbox-teal">
-                    <div class="icon">
-                      <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,503.46388370962813C374.79870501325706,506.71871716319447,464.8034551963731,527.1746412648533,510.4981551193396,467.86667711651364C555.9287308511215,408.9015244558933,512.6030010748507,327.5744911775523,490.211057578863,256.5855673507754C471.097692560561,195.9906835881958,447.69079081568157,138.11976852964426,395.19560036434837,102.3242989838813C329.3053358748298,57.3949838291264,248.02791733380457,8.279543830951368,175.87071277845988,42.242879143198664C103.41431057327972,76.34704239035025,93.79494320519305,170.9812938413882,81.28167332365135,250.07896920659033C70.17666984294237,320.27484674793965,64.84698225790005,396.69656628748305,111.28512138212992,450.4950937839243C156.20124167950087,502.5303643271138,231.32542653798444,500.4755392045468,300,503.46388370962813"></path>
-                      </svg>
-                      <i class="bx bx-layer"></i>
-                    </div>
-                    <h4><a href="">Nemo Enim</a></h4>
-                    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
-                  </div>
-                </div> -->
-              </div>
-            </div><!-- End .content-->
-          </div>
-        </div>
-
-      </div>
-    </section><!-- End Services Section -->
-
-    <!-- ======= Features Section ======= -->
-    <section id="features" class="features">
-      <!-- <div class="container">
-
-        <div class="row">
-          <div class="col-lg-3 col-md-4">
-            <div class="icon-box">
-              <i class="ri-store-line" style="color: #ffbb2c;"></i>
-              <h3><a href="">Lorem Ipsum</a></h3>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-4 mt-4 mt-md-0">
-            <div class="icon-box">
-              <i class="ri-bar-chart-box-line" style="color: #5578ff;"></i>
-              <h3><a href="">Dolor Sitema</a></h3>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-4 mt-4 mt-md-0">
-            <div class="icon-box">
-              <i class="ri-calendar-todo-line" style="color: #e80368;"></i>
-              <h3><a href="">Sed perspiciatis</a></h3>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-4 mt-4 mt-lg-0">
-            <div class="icon-box">
-              <i class="ri-paint-brush-line" style="color: #e361ff;"></i>
-              <h3><a href="">Magni Dolores</a></h3>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-4 mt-4">
-            <div class="icon-box">
-              <i class="ri-database-2-line" style="color: #47aeff;"></i>
-              <h3><a href="">Nemo Enim</a></h3>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-4 mt-4">
-            <div class="icon-box">
-              <i class="ri-gradienter-line" style="color: #ffa76e;"></i>
-              <h3><a href="">Eiusmod Tempor</a></h3>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-4 mt-4">
-            <div class="icon-box">
-              <i class="ri-file-list-3-line" style="color: #11dbcf;"></i>
-              <h3><a href="">Midela Teren</a></h3>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-4 mt-4">
-            <div class="icon-box">
-              <i class="ri-price-tag-2-line" style="color: #4233ff;"></i>
-              <h3><a href="">Pira Neve</a></h3>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-4 mt-4">
-            <div class="icon-box">
-              <i class="ri-anchor-line" style="color: #b2904f;"></i>
-              <h3><a href="">Dirada Pack</a></h3>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-4 mt-4">
-            <div class="icon-box">
-              <i class="ri-disc-line" style="color: #b20969;"></i>
-              <h3><a href="">Moton Ideal</a></h3>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-4 mt-4">
-            <div class="icon-box">
-              <i class="ri-base-station-line" style="color: #ff5828;"></i>
-              <h3><a href="">Verdo Park</a></h3>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-4 mt-4">
-            <div class="icon-box">
-              <i class="ri-fingerprint-line" style="color: #29cc61;"></i>
-              <h3><a href="">Flavor Nivelanda</a></h3>
-            </div>
-          </div>
-        </div>
-
-      </div> -->
-    </section><!-- End Features Section -->
-
-    <!-- ======= Portfolio Section ======= -->
-    <section id="portfolio" class="portfolio">
-      <!-- <div class="container">
-
-        <div class="row">
-          <div class="col-lg-12 d-flex justify-content-center">
-            <ul id="portfolio-flters">
-              <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".filter-app">App</li>
-              <li data-filter=".filter-card">Card</li>
-              <li data-filter=".filter-web">Web</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="row portfolio-container">
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>App 1</h4>
-                <p>App</p>
-                <div class="portfolio-links">
-                  <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-2.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Web 3</h4>
-                <p>Web</p>
-                <div class="portfolio-links">
-                  <a href="assets/img/portfolio/portfolio-2.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-3.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>App 2</h4>
-                <p>App</p>
-                <div class="portfolio-links">
-                  <a href="assets/img/portfolio/portfolio-3.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 2"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-4.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Card 2</h4>
-                <p>Card</p>
-                <div class="portfolio-links">
-                  <a href="assets/img/portfolio/portfolio-4.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 2"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-5.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Web 2</h4>
-                <p>Web</p>
-                <div class="portfolio-links">
-                  <a href="assets/img/portfolio/portfolio-5.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 2"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-6.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>App 3</h4>
-                <p>App</p>
-                <div class="portfolio-links">
-                  <a href="assets/img/portfolio/portfolio-6.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 3"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-7.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Card 1</h4>
-                <p>Card</p>
-                <div class="portfolio-links">
-                  <a href="assets/img/portfolio/portfolio-7.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 1"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-8.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Card 3</h4>
-                <p>Card</p>
-                <div class="portfolio-links">
-                  <a href="assets/img/portfolio/portfolio-8.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 3"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-9.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Web 3</h4>
-                <p>Web</p>
-                <div class="portfolio-links">
-                  <a href="assets/img/portfolio/portfolio-9.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-      </div> -->
-    </section><!-- End Portfolio Section -->
-
-    <!-- ======= Team Section ======= -->
-    <section id="team" class="team section-bg">
-      <!-- <div class="container">
-
-        <div class="section-title">
-          <h2>Team</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-        </div>
-
-        <div class="row">
-
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-            <div class="member">
-              <div class="member-img">
-                <img src="assets/img/team/team-1.jpg" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-              <div class="member-info">
-                <h4>Walter White</h4>
-                <span>Chief Executive Officer</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-            <div class="member">
-              <div class="member-img">
-                <img src="assets/img/team/team-2.jpg" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-              <div class="member-info">
-                <h4>Sarah Jhonson</h4>
-                <span>Product Manager</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-            <div class="member">
-              <div class="member-img">
-                <img src="assets/img/team/team-3.jpg" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-              <div class="member-info">
-                <h4>William Anderson</h4>
-                <span>CTO</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-            <div class="member">
-              <div class="member-img">
-                <img src="assets/img/team/team-4.jpg" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-              <div class="member-info">
-                <h4>Amanda Jepson</h4>
-                <span>Accountant</span>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-      </div> -->
-    </section><!-- End Team Section -->
-
-    <!-- ======= Pricing Section ======= -->
-    <section id="pricing" class="pricing">
-      <!-- <div class="container">
-
-        <div class="section-title">
-          <h2>Pricing</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-        </div>
-
-        <div class="row no-gutters">
-
-          <div class="col-lg-4 box">
-            <h3>Free</h3>
-            <h4>$0<span>per month</span></h4>
-            <ul>
-              <li><i class="bx bx-check"></i> Quam adipiscing vitae proin</li>
-              <li><i class="bx bx-check"></i> Nec feugiat nisl pretium</li>
-              <li><i class="bx bx-check"></i> Nulla at volutpat diam uteera</li>
-              <li class="na"><i class="bx bx-x"></i> <span>Pharetra massa massa ultricies</span></li>
-              <li class="na"><i class="bx bx-x"></i> <span>Massa ultricies mi quis hendrerit</span></li>
-            </ul>
-            <a href="#" class="btn-buy">Get Started</a>
-          </div>
-
-          <div class="col-lg-4 box featured">
-            <h3>Business</h3>
-            <h4>$29<span>per month</span></h4>
-            <ul>
-              <li><i class="bx bx-check"></i> Quam adipiscing vitae proin</li>
-              <li><i class="bx bx-check"></i> Nec feugiat nisl pretium</li>
-              <li><i class="bx bx-check"></i> Nulla at volutpat diam uteera</li>
-              <li><i class="bx bx-check"></i> Pharetra massa massa ultricies</li>
-              <li><i class="bx bx-check"></i> Massa ultricies mi quis hendrerit</li>
-            </ul>
-            <a href="#" class="btn-buy">Get Started</a>
-          </div>
-
-          <div class="col-lg-4 box">
-            <h3>Developer</h3>
-            <h4>$49<span>per month</span></h4>
-            <ul>
-              <li><i class="bx bx-check"></i> Quam adipiscing vitae proin</li>
-              <li><i class="bx bx-check"></i> Nec feugiat nisl pretium</li>
-              <li><i class="bx bx-check"></i> Nulla at volutpat diam uteera</li>
-              <li><i class="bx bx-check"></i> Pharetra massa massa ultricies</li>
-              <li><i class="bx bx-check"></i> Massa ultricies mi quis hendrerit</li>
-            </ul>
-            <a href="#" class="btn-buy">Get Started</a>
-          </div>
-
-        </div>
-
-      </div> -->
-    </section><!-- End Pricing Section -->
-
-    <!-- ======= Frequently Asked Questions Section ======= -->
-    <section id="faq" class="faq">
-      <!-- <div class="container">
-
-        <div class="section-title">
-          <h2>Frequently Asked Questions</h2>
-        </div>
-
-        <ul class="faq-list">
-
-          <li>
-            <div data-bs-toggle="collapse" class="collapsed question" href="#faq1">Non consectetur a erat nam at lectus urna duis? <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
-            <div id="faq1" class="collapse" data-bs-parent=".faq-list">
-              <p>
-                Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.
-              </p>
-            </div>
-          </li>
-
-          <li>
-            <div data-bs-toggle="collapse" href="#faq2" class="collapsed question">Feugiat scelerisque varius morbi enim nunc faucibus a pellentesque? <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
-            <div id="faq2" class="collapse" data-bs-parent=".faq-list">
-              <p>
-                Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.
-              </p>
-            </div>
-          </li>
-
-          <li>
-            <div data-bs-toggle="collapse" href="#faq3" class="collapsed question">Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi? <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
-            <div id="faq3" class="collapse" data-bs-parent=".faq-list">
-              <p>
-                Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi quis
-              </p>
-            </div>
-          </li>
-
-          <li>
-            <div data-bs-toggle="collapse" href="#faq4" class="collapsed question">Ac odio tempor orci dapibus. Aliquam eleifend mi in nulla? <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
-            <div id="faq4" class="collapse" data-bs-parent=".faq-list">
-              <p>
-                Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.
-              </p>
-            </div>
-          </li>
-
-          <li>
-            <div data-bs-toggle="collapse" href="#faq5" class="collapsed question">Tempus quam pellentesque nec nam aliquam sem et tortor consequat? <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
-            <div id="faq5" class="collapse" data-bs-parent=".faq-list">
-              <p>
-                Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in est ante in. Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl suscipit adipiscing bibendum est. Purus gravida quis blandit turpis cursus in
-              </p>
-            </div>
-          </li>
-
-          <li>
-            <div data-bs-toggle="collapse" href="#faq6" class="collapsed question">Tortor vitae purus faucibus ornare. Varius vel pharetra vel turpis nunc eget lorem dolor? <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
-            <div id="faq6" class="collapse" data-bs-parent=".faq-list">
-              <p>
-                Laoreet sit amet cursus sit amet dictum sit amet justo. Mauris vitae ultricies leo integer malesuada nunc vel. Tincidunt eget nullam non nisi est sit amet. Turpis nunc eget lorem dolor sed. Ut venenatis tellus in metus vulputate eu scelerisque. Pellentesque diam volutpat commodo sed egestas egestas fringilla phasellus faucibus. Nibh tellus molestie nunc non blandit massa enim nec.
-              </p>
-            </div>
-          </li>
-
-        </ul>
-
-      </div> -->
-    </section><!-- End Frequently Asked Questions Section -->
-
-    <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact section-bg">
-      <!-- <div class="container">
-
-        <div class="section-title">
-          <h2>Contact</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-        </div>
-
-        <div class="row">
-
-          <div class="col-lg-6">
-
-            <div class="row">
-              <div class="col-md-12">
-                <div class="info-box">
-                  <i class="bx bx-map"></i>
-                  <h3>Our Address</h3>
-                  <p>A108 Adam Street, New York, NY 535022</p>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="info-box mt-4">
-                  <i class="bx bx-envelope"></i>
-                  <h3>Email Us</h3>
-                  <p>info@example.com<br>contact@example.com</p>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="info-box mt-4">
-                  <i class="bx bx-phone-call"></i>
-                  <h3>Call Us</h3>
-                  <p>+1 5589 55488 55<br>+1 6678 254445 41</p>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-          <div class="col-lg-6 mt-4 mt-lg-0">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-              <div class="row">
-                <div class="col-md-6 form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
-                </div>
-                <div class="col-md-6 form-group mt-3 mt-md-0">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
-                </div>
-              </div>
-              <div class="form-group mt-3">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
-              </div>
-              <div class="form-group mt-3">
-                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
-              </div>
-              <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
-              </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
-            </form>
-          </div>
-
-        </div>
-
-      </div> -->
-    </section><!-- End Contact Section -->
-  </main><!-- End #main -->
-</div>
-<!-- ======= Footer ======= -->
-  <footer id="footer">
-
-    <div class="footer-top">
-      <div class="container">
-        <div class="row">
-
-          <div class="col-lg-3 col-md-6 footer-contact">
-            <h3>File Convo.</h3>
-            <p>
-              A04 Mumbai <br><br>
-              <strong>Phone:</strong> 8668816974<br>
-              <strong>Email:</strong> pandeysunny01@gmail.com<br>
-            </p>
-          </div>
-
-          <div class="col-lg-2 col-md-6 footer-links">
-            <h4>Useful Links</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Our Services</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-4 col-md-6 footer-newsletter">
-            <h4>Join Our Newsletter</h4>
-            <p>To be noted</p>
-            <form action="" method="post">
-              <input type="email" name="email"><input type="submit" value="Subscribe">
-            </form>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    <div class="container d-md-flex py-4">
-
-      <div class="me-md-auto text-center text-md-start">
-        <div class="copyright">
-          &copy; Copyright <strong><span>File Convo.</span></strong>. All Rights Reserved
-        </div>
-        <div class="credits">
-         
-        </div>
-      </div>
-      <div class="social-links text-center text-md-right pt-3 pt-md-0">
-        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-      </div>
-    </div>
-  </footer><!-- End Footer -->
-
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Vendor JS Files -->
-  <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
-  <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
-  <script src="//mozilla.github.io/pdf.js/build/pdf.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script th:src="@{/js/purecounter_vanilla.js}"></script>
-  <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
-  <script th:src="@{/js/glightbox.min.js}"></script>
-  <script th:src="@{/js/isotope.pkgd.min.js}"></script>
-  <script th:src="@{/js/swiper-bundle.min.js}"></script>
-  <script th:src="@{/vendor/php-email-form/validate.js}"></script>
-<script th:src="@{/js/jquery.loadingModal.js}"></script>
-
-  <!-- Template Main JS File -->
-  <script th:src="@{/js/main.js}"></script>
-
-<script type="text/javascript">
-function showLoading() {
-	$('body').loadingModal({text: 'Please wait...'});
-	$('body').loadingModal('animation', 'circle').loadingModal('backgroundColor', 'black');
-}
-
-function hideLoading() {
-	 $('body').loadingModal('hide');
-	 $('body').loadingModal('destroy')
-}
-function openURL(url) {
-	
-	//showLoading();
-	$("#main").load(url);
-	$(document).ajaxStart(function() {
-	 }).ajaxStop ( function(){
-	 //hideLoading(); 
-	 });
-	
-}
-</script>
 </body>
-
 </html>
