@@ -77,4 +77,25 @@ public class RedirectController {
 		return model;
 	}
 	
+	@GetMapping(value = "/tools")
+	public ModelAndView searchImageToTextView(ModelAndView model) {
+
+		model.setViewName("tools");
+		return model;
+	}
+	
+	@GetMapping(value = "/fileEditing")
+	public ModelAndView fileEditing(ModelAndView model) {
+
+		model.setViewName("fileEditing");
+		return model;
+	}
+	
+	@GetMapping(value = "/searchPdfToDocView")
+	public ModelAndView searchPdfToDocView(ModelAndView model) {
+
+		model.setViewName("PDF/PDFtoDOC/addPdfToDoc");
+		return model;
+	}
+	
 }

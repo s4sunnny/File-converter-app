@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script th:src="@{/js/tailwind.js}"></script>
+<script th:src="@{/js/main.js}"></script>
+<script th:src="@{/js/font-awesome-all.min.js}"></script>
+<link
+	href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+	rel="stylesheet">
+
+</head>
+<body class="bg-gray-50">
+
+	<!-- Header -->
+	<header id="header"
+		class="bg-white shadow-sm border-b border-gray-100 sticky top-0 z-50">
+		<div class="max-w-7xl mx-auto px-6">
+			<div class="flex items-center justify-between h-16">
+				<div class="flex items-center space-x-8">
+					<div class="flex items-center space-x-2">
+						<div
+							class="w-8 h-8 rounded-lg gradient-bg flex items-center justify-center">
+							<i class="fas fa-exchange-alt text-white text-sm"></i>
+						</div>
+						<span class="text-xl font-bold text-gray-900">FileFlow</span>
+					</div>
+					<nav class="hidden md:flex space-x-6">
+						<span
+							class="text-gray-600 hover:text-primary transition-colors cursor-pointer">Tools</span>
+						<span
+							class="text-gray-600 hover:text-primary transition-colors cursor-pointer">Features</span>
+						<span
+							class="text-gray-600 hover:text-primary transition-colors cursor-pointer">Pricing</span>
+						<span
+							class="text-gray-600 hover:text-primary transition-colors cursor-pointer">Help</span>
+					</nav>
+				</div>
+				<div class="flex items-center space-x-4">
+					<button class="text-gray-600 hover:text-primary transition-colors">
+						<i class="fas fa-moon"></i>
+					</button>
+					<button
+						class="text-gray-600 hover:text-primary px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors">
+						Log In</button>
+					<button
+						class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+						Sign Up</button>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<!-- PDF Editor Header -->
+	<section id="editor-header"
+		class="bg-white border-b border-gray-200 py-4">
+		<div class="max-w-7xl mx-auto px-6">
+			<div class="flex items-center justify-between">
+				<div class="flex items-center space-x-4">
+					<button class="text-gray-600 hover:text-primary transition-colors">
+						<i class="fas fa-arrow-left text-lg"></i>
+					</button>
+					<div>
+						<h1 class="text-xl font-semibold text-gray-900">document.pdf</h1>
+						<p class="text-sm text-gray-500">Last saved 2 minutes ago</p>
+					</div>
+				</div>
+				<div class="flex items-center space-x-3">
+					<button
+						class="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors">
+						<i class="fas fa-download mr-2"></i>Download
+					</button>
+					<button
+						class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+						<i class="fas fa-save mr-2"></i>Save
+					</button>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Main Editor Interface -->
+	<div id="editor-main" class="flex h-[calc(100vh-140px)]">
+
+		<!-- Left Sidebar - Tools -->
+		<div id="tools-sidebar"
+			class="w-64 bg-white border-r border-gray-200 flex flex-col">
+			<div class="p-4 border-b border-gray-200">
+				<h2 class="font-semibold text-gray-900 mb-4">Edit Tools</h2>
+				<div class="space-y-2">
+					<button
+						class="w-full text-left p-3 rounded-lg hover:bg-blue-50 hover:text-primary transition-colors flex items-center space-x-3">
+						<i class="fas fa-mouse-pointer text-lg"></i> <span>Select</span>
+					</button>
+					<button
+						class="w-full text-left p-3 rounded-lg hover:bg-blue-50 hover:text-primary transition-colors flex items-center space-x-3 bg-blue-50 text-primary">
+						<i class="fas fa-font text-lg"></i> <span>Text</span>
+					</button>
+					<button
+						class="w-full text-left p-3 rounded-lg hover:bg-blue-50 hover:text-primary transition-colors flex items-center space-x-3">
+						<i class="fas fa-highlighter text-lg"></i> <span>Highlight</span>
+					</button>
+					<button
+						class="w-full text-left p-3 rounded-lg hover:bg-blue-50 hover:text-primary transition-colors flex items-center space-x-3">
+						<i class="fas fa-sticky-note text-lg"></i> <span>Annotate</span>
+					</button>
+					<button
+						class="w-full text-left p-3 rounded-lg hover:bg-blue-50 hover:text-primary transition-colors flex items-center space-x-3">
+						<i class="fas fa-signature text-lg"></i> <span>Sign</span>
+					</button>
+					<button
+						class="w-full text-left p-3 rounded-lg hover:bg-blue-50 hover:text-primary transition-colors flex items-center space-x-3">
+						<i class="fas fa-shapes text-lg"></i> <span>Shapes</span>
+					</button>
+				</div>
+			</div>
+
+			<!-- Text Extraction Panel -->
+			<div class="p-4 border-b border-gray-200">
+				<h3 class="font-semibold text-gray-900 mb-3">Extract Text</h3>
+				<button
+					class="w-full bg-green-100 text-green-700 p-3 rounded-lg hover:bg-green-200 transition-colors text-sm">
+					<i class="fas fa-text-height mr-2"></i> Extract All Text
+				</button>
+				<button
+					class="w-full bg-blue-100 text-blue-700 p-3 rounded-lg hover:bg-blue-200 transition-colors text-sm mt-2">
+					<i class="fas fa-eye mr-2"></i> OCR Scan
+				</button>
+			</div>
+
+			<!-- Page Management -->
+			<div class="p-4 flex-1">
+				<h3 class="font-semibold text-gray-900 mb-3">Pages</h3>
+				<div class="space-y-2">
+					<div class="border border-primary rounded-lg p-2 bg-blue-50">
+						<div
+							class="w-full h-16 bg-white rounded border-2 border-dashed border-gray-300 flex items-center justify-center text-xs text-gray-500">
+							Page 1</div>
+					</div>
+					<div
+						class="border border-gray-200 rounded-lg p-2 hover:border-primary transition-colors cursor-pointer">
+						<div
+							class="w-full h-16 bg-white rounded border-2 border-dashed border-gray-300 flex items-center justify-center text-xs text-gray-500">
+							Page 2</div>
+					</div>
+					<div
+						class="border border-gray-200 rounded-lg p-2 hover:border-primary transition-colors cursor-pointer">
+						<div
+							class="w-full h-16 bg-white rounded border-2 border-dashed border-gray-300 flex items-center justify-center text-xs text-gray-500">
+							Page 3</div>
+					</div>
+				</div>
+				<button
+					class="w-full mt-4 border-2 border-dashed border-gray-300 p-3 rounded-lg hover:border-primary hover:bg-blue-50 transition-colors text-sm text-gray-600">
+					<i class="fas fa-plus mr-2"></i>Add Page
+				</button>
+			</div>
+		</div>
+
+		<!-- Main Editor Canvas -->
+		<div id="editor-canvas" class="flex-1 bg-gray-100 overflow-auto">
+			<div class="p-8">
+				<!-- PDF Page -->
+				<div class="max-w-2xl mx-auto">
+					<div class="bg-white pdf-page rounded-lg p-8 mb-6 relative">
+						<!-- Simulated PDF Content -->
+						<div class="space-y-4">
+							<h2 class="text-2xl font-bold text-gray-900 mb-4">Document
+								Title</h2>
+							<p class="text-gray-700 leading-relaxed">This is a sample PDF
+								document that demonstrates the text extraction and annotation
+								capabilities of FileFlow. You can select text, add highlights,
+								annotations, and signatures.</p>
+							<p class="text-gray-700 leading-relaxed">The OCR technology
+								can extract text from scanned documents and images, making them
+								searchable and editable. This powerful feature allows you to
+								work with any type of PDF document.</p>
+
+							<!-- Highlighted Text Example -->
+							<p class="text-gray-700 leading-relaxed">
+								<span class="bg-yellow-200">This text has been
+									highlighted</span> using the annotation tools. You can choose from
+								multiple highlight colors and add comments.
+							</p>
+
+							<!-- Text with Annotation -->
+							<div class="relative">
+								<p class="text-gray-700 leading-relaxed">This paragraph
+									contains an annotation that provides additional context or
+									comments.</p>
+								<!-- Annotation Popup -->
+								<div
+									class="absolute top-0 right-0 annotation-tool rounded-lg p-3 shadow-lg border border-gray-200 w-64">
+									<div class="flex items-start space-x-2">
+										<div
+											class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center">
+											<i class="fas fa-comment text-blue-600 text-xs"></i>
+										</div>
+										<div class="flex-1">
+											<p class="text-sm text-gray-700">Sample annotation
+												comment explaining this section.</p>
+											<p class="text-xs text-gray-500 mt-1">Added 5 min ago</p>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="mt-8 p-4 bg-gray-50 rounded-lg">
+								<h3 class="font-semibold text-gray-900 mb-2">Key Features:</h3>
+								<ul class="list-disc list-inside text-gray-700 space-y-1">
+									<li>Real-time text extraction</li>
+									<li>Advanced OCR capabilities</li>
+									<li>Multiple annotation types</li>
+									<li>Digital signature support</li>
+								</ul>
+							</div>
+						</div>
+
+						<!-- Floating Annotation Tools -->
+						<div
+							class="absolute top-4 right-4 annotation-tool rounded-lg p-2 shadow-lg border border-gray-200">
+							<div class="flex space-x-2">
+								<button
+									class="w-8 h-8 bg-yellow-100 rounded hover:bg-yellow-200 transition-colors flex items-center justify-center">
+									<i class="fas fa-highlighter text-yellow-600 text-xs"></i>
+								</button>
+								<button
+									class="w-8 h-8 bg-blue-100 rounded hover:bg-blue-200 transition-colors flex items-center justify-center">
+									<i class="fas fa-sticky-note text-blue-600 text-xs"></i>
+								</button>
+								<button
+									class="w-8 h-8 bg-red-100 rounded hover:bg-red-200 transition-colors flex items-center justify-center">
+									<i class="fas fa-times text-red-600 text-xs"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Right Sidebar - Properties -->
+		<div id="properties-sidebar"
+			class="w-80 bg-white border-l border-gray-200">
+			<!-- Text Properties -->
+			<div class="p-4 border-b border-gray-200">
+				<h3 class="font-semibold text-gray-900 mb-4">Text Properties</h3>
+				<div class="space-y-4">
+					<div>
+						<label class="block text-sm font-medium text-gray-700 mb-2">Font
+							Family</label> <select
+							class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm">
+							<option>Inter</option>
+							<option>Arial</option>
+							<option>Times New Roman</option>
+							<option>Helvetica</option>
+						</select>
+					</div>
+					<div class="flex space-x-2">
+						<div class="flex-1">
+							<label class="block text-sm font-medium text-gray-700 mb-2">Size</label>
+							<input type="number" value="14"
+								class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm">
+						</div>
+						<div class="flex-1">
+							<label class="block text-sm font-medium text-gray-700 mb-2">Color</label>
+							<div
+								class="w-full h-10 bg-gray-900 rounded-lg border border-gray-300 cursor-pointer"></div>
+						</div>
+					</div>
+					<div class="flex space-x-2">
+						<button
+							class="flex-1 p-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+							<i class="fas fa-bold"></i>
+						</button>
+						<button
+							class="flex-1 p-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+							<i class="fas fa-italic"></i>
+						</button>
+						<button
+							class="flex-1 p-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+							<i class="fas fa-underline"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<!-- Extracted Text -->
+			<div class="p-4 border-b border-gray-200">
+				<h3 class="font-semibold text-gray-900 mb-4">Extracted Text</h3>
+				<div
+					class="bg-gray-50 rounded-lg p-3 h-32 overflow-y-auto text-sm text-gray-700">
+					<p class="mb-2">Document Title</p>
+					<p class="mb-2">This is a sample PDF document that
+						demonstrates...</p>
+					<p class="mb-2">The OCR technology can extract text from...</p>
+				</div>
+				<button
+					class="w-full mt-3 bg-primary text-white py-2 rounded-lg hover:bg-blue-600 transition-colors text-sm">
+					<i class="fas fa-copy mr-2"></i>Copy All Text
+				</button>
+			</div>
+
+			<!-- Annotations List -->
+			<div class="p-4">
+				<h3 class="font-semibold text-gray-900 mb-4">Annotations</h3>
+				<div class="space-y-3">
+					<div class="border border-gray-200 rounded-lg p-3">
+						<div class="flex items-start space-x-2">
+							<div class="w-4 h-4 bg-yellow-400 rounded-full mt-1"></div>
+							<div class="flex-1">
+								<p class="text-sm text-gray-700">Highlighted text on page 1</p>
+								<p class="text-xs text-gray-500">2 min ago</p>
+							</div>
+						</div>
+					</div>
+					<div class="border border-gray-200 rounded-lg p-3">
+						<div class="flex items-start space-x-2">
+							<div class="w-4 h-4 bg-blue-400 rounded-full mt-1"></div>
+							<div class="flex-1">
+								<p class="text-sm text-gray-700">Sample annotation comment</p>
+								<p class="text-xs text-gray-500">5 min ago</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Bottom Toolbar -->
+	<div id="bottom-toolbar"
+		class="bg-white border-t border-gray-200 px-6 py-3">
+		<div class="flex items-center justify-between">
+			<div class="flex items-center space-x-4">
+				<span class="text-sm text-gray-600">Page 1 of 3</span>
+				<div class="flex items-center space-x-2">
+					<button
+						class="p-2 text-gray-600 hover:text-primary transition-colors">
+						<i class="fas fa-chevron-left"></i>
+					</button>
+					<button
+						class="p-2 text-gray-600 hover:text-primary transition-colors">
+						<i class="fas fa-chevron-right"></i>
+					</button>
+				</div>
+			</div>
+			<div class="flex items-center space-x-4">
+				<div class="flex items-center space-x-2">
+					<button
+						class="p-2 text-gray-600 hover:text-primary transition-colors">
+						<i class="fas fa-search-minus"></i>
+					</button>
+					<span class="text-sm text-gray-600">100%</span>
+					<button
+						class="p-2 text-gray-600 hover:text-primary transition-colors">
+						<i class="fas fa-search-plus"></i>
+					</button>
+				</div>
+				<button
+					class="p-2 text-gray-600 hover:text-primary transition-colors">
+					<i class="fas fa-expand-arrows-alt"></i>
+				</button>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

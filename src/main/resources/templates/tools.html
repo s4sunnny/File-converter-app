@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script th:src="@{/js/tailwind.js}"></script>
+<script th:src="@{/js/main.js}"></script>
+<script th:src="@{/js/font-awesome-all.min.js}"></script>
+<link
+	href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+	rel="stylesheet">
+
+<link th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+<body class="bg-gray-50">
+
+	<!-- Header -->
+	<header id="header"
+		class="bg-white shadow-sm border-b border-gray-100 sticky top-0 z-50">
+		<div class="max-w-7xl mx-auto px-6">
+			<div class="flex items-center justify-between h-16">
+				<div class="flex items-center space-x-12">
+					<div class="flex items-center space-x-2">
+						<div
+							class="w-8 h-8 rounded-lg gradient-bg flex items-center justify-center">
+							<i class="fas fa-exchange-alt text-white text-sm"></i>
+						</div>
+						<span class="text-xl font-bold text-gray-900">FileFlow</span>
+					</div>
+					<nav class="hidden md:flex space-x-6">
+						<span
+							class="text-primary font-semibold border-b-2 border-primary pb-1 cursor-pointer">Tools</span>
+						<span
+							class="text-gray-600 hover:text-primary transition-colors cursor-pointer">Features</span>
+						<span
+							class="text-gray-600 hover:text-primary transition-colors cursor-pointer">Pricing</span>
+						<span
+							class="text-gray-600 hover:text-primary transition-colors cursor-pointer">Help</span>
+					</nav>
+				</div>
+				<!-- <div class="flex items-center space-x-4">
+                    <button class="text-gray-600 hover:text-primary transition-colors">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="text-gray-600 hover:text-primary px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors">
+                        Log In
+                    </button>
+                    <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+                        Sign Up
+                    </button>
+                </div> -->
+			</div>
+		</div>
+	</header>
+
+	<!-- Tools Header Section -->
+	<section id="tools-header"
+		class="bg-gradient-to-br from-blue-50 to-indigo-100 py-16">
+		<div class="max-w-7xl mx-auto px-6">
+			<div class="text-center">
+				<h1 class="text-4xl font-bold text-gray-900 mb-4">All Tools</h1>
+				<p class="text-xl text-gray-600 mb-8">Comprehensive file
+					conversion and editing tools for every need</p>
+				<div class="max-w-2xl mx-auto relative">
+					<input type="text" placeholder="Search tools..."
+						class="w-full px-6 py-4 rounded-xl border border-gray-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-lg">
+					<i
+						class="fas fa-search absolute right-6 top-1/2 transform -translate-y-1/2 text-gray-400 text-xl"></i>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Category Navigation -->
+	<section id="category-nav"
+		class="bg-white border-b border-gray-200 sticky top-16 z-40">
+		<div class="max-w-7xl mx-auto px-6">
+			<div
+				class="flex items-center justify-center space-x-8 py-4 overflow-x-auto">
+				<button
+					class="text-primary font-semibold border-b-2 border-primary pb-2 whitespace-nowrap">All
+					Tools</button>
+				<button
+					class="text-gray-600 hover:text-primary transition-colors pb-2 whitespace-nowrap">Convert</button>
+				<button
+					class="text-gray-600 hover:text-primary transition-colors pb-2 whitespace-nowrap">Edit</button>
+				<button
+					class="text-gray-600 hover:text-primary transition-colors pb-2 whitespace-nowrap">Compress</button>
+				<button
+					class="text-gray-600 hover:text-primary transition-colors pb-2 whitespace-nowrap">Merge</button>
+				<button
+					class="text-gray-600 hover:text-primary transition-colors pb-2 whitespace-nowrap">Split</button>
+				<button
+					class="text-gray-600 hover:text-primary transition-colors pb-2 whitespace-nowrap">Protect</button>
+				<button
+					class="text-gray-600 hover:text-primary transition-colors pb-2 whitespace-nowrap">Extract</button>
+			</div>
+		</div>
+	</section>
+
+	<!-- Convert Tools Section -->
+	<section id="convert-tools" class="py-12 bg-white">
+		<div class="max-w-7xl mx-auto px-6">
+			<div class="mb-8">
+				<h2 class="text-2xl font-bold text-gray-900 mb-2">Convert Tools</h2>
+				<p class="text-gray-600">Transform files between different
+					formats</p>
+			</div>
+			<div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+				<a th:href="@{/fileEditing}"
+					class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all hover-lift cursor-pointer border border-gray-100">
+					<div
+						class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
+						<i class="fas fa-file-pdf text-red-600 text-xl"></i>
+					</div>
+					<h3 class="font-semibold text-gray-900 mb-2">PDF to Word</h3>
+					<p class="text-gray-600 text-sm mb-4">Convert PDF documents to
+						editable Word files</p> <span
+					class="text-xs text-green-600 bg-green-100 px-2 py-1 rounded-full">Popular</span>
+				</a>
+				<div
+					class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all hover-lift cursor-pointer border border-gray-100">
+					<div
+						class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+						<i class="fas fa-file-word text-blue-600 text-xl"></i>
+					</div>
+					<h3 class="font-semibold text-gray-900 mb-2">Word to PDF</h3>
+					<p class="text-gray-600 text-sm mb-4">Convert Word documents to
+						PDF format</p>
+					<span
+						class="text-xs text-green-600 bg-green-100 px-2 py-1 rounded-full">Popular</span>
+				</div>
+				<div
+					class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all hover-lift cursor-pointer border border-gray-100">
+					<div
+						class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+						<i class="fas fa-image text-green-600 text-xl"></i>
+					</div>
+					<h3 class="font-semibold text-gray-900 mb-2">JPG to PDF</h3>
+					<p class="text-gray-600 text-sm">Convert images to PDF
+						documents</p>
+				</div>
+				<div
+					class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all hover-lift cursor-pointer border border-gray-100">
+					<div
+						class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+						<i class="fas fa-image text-purple-600 text-xl"></i>
+					</div>
+					<h3 class="font-semibold text-gray-900 mb-2">PNG to JPG</h3>
+					<p class="text-gray-600 text-sm">Convert PNG images to JPG
+						format</p>
+				</div>
+				<div
+					class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all hover-lift cursor-pointer border border-gray-100">
+					<div
+						class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
+						<i class="fas fa-file-powerpoint text-orange-600 text-xl"></i>
+					</div>
+					<h3 class="font-semibold text-gray-900 mb-2">PPT to PDF</h3>
+					<p class="text-gray-600 text-sm">Convert PowerPoint to PDF</p>
+				</div>
+				<div
+					class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all hover-lift cursor-pointer border border-gray-100">
+					<div
+						class="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
+						<i class="fas fa-file-excel text-teal-600 text-xl"></i>
+					</div>
+					<h3 class="font-semibold text-gray-900 mb-2">Excel to PDF</h3>
+					<p class="text-gray-600 text-sm">Convert Excel spreadsheets to
+						PDF</p>
+				</div>
+				<div
+					class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all hover-lift cursor-pointer border border-gray-100">
+					<div
+						class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
+						<i class="fas fa-file-alt text-indigo-600 text-xl"></i>
+					</div>
+					<h3 class="font-semibold text-gray-900 mb-2">TXT to PDF</h3>
+					<p class="text-gray-600 text-sm">Convert text files to PDF</p>
+				</div>
+				<div
+					class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all hover-lift cursor-pointer border border-gray-100">
+					<div
+						class="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center mb-4">
+						<i class="fas fa-file-image text-pink-600 text-xl"></i>
+					</div>
+					<h3 class="font-semibold text-gray-900 mb-2">PDF to JPG</h3>
+					<p class="text-gray-600 text-sm">Convert PDF pages to images</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Edit Tools Section -->
+	<section id="edit-tools" class="py-12 bg-gray-50">
+		<div class="max-w-7xl mx-auto px-6">
+			<div class="mb-8">
+				<h2 class="text-2xl font-bold text-gray-900 mb-2">Edit Tools</h2>
+				<p class="text-gray-600">Modify and enhance your documents</p>
+			</div>
+			<div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+				<div
+					class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all hover-lift cursor-pointer border border-gray-100">
+					<div
+						class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+						<i class="fas fa-edit text-blue-600 text-xl"></i>
+					</div>
+					<h3 class="font-semibold text-gray-900 mb-2">Edit PDF</h3>
+					<p class="text-gray-600 text-sm">Add text, images, and
+						annotations to PDFs</p>
+				</div>
+				<div
+					class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all hover-lift cursor-pointer border border-gray-100">
+					<div
+						class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+						<i class="fas fa-signature text-green-600 text-xl"></i>
+					</div>
+					<h3 class="font-semibold text-gray-900 mb-2">Sign PDF</h3>
+					<p class="text-gray-600 text-sm">Add digital signatures to
+						documents</p>
+				</div>
+				<div
+					class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all hover-lift cursor-pointer border border-gray-100">
+					<div
+						class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mb-4">
+						<i class="fas fa-highlighter text-yellow-600 text-xl"></i>
+					</div>
+					<h3 class="font-semibold text-gray-900 mb-2">Highlight PDF</h3>
+					<p class="text-gray-600 text-sm">Highlight and annotate text in
+						PDFs</p>
+				</div>
+				<div
+					class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all hover-lift cursor-pointer border border-gray-100">
+					<div
+						class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+						<i class="fas fa-crop text-purple-600 text-xl"></i>
+					</div>
+					<h3 class="font-semibold text-gray-900 mb-2">Crop Images</h3>
+					<p class="text-gray-600 text-sm">Resize and crop images to
+						perfect size</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Compress & Optimize Tools -->
+	<section id="compress-tools" class="py-12 bg-white">
+		<div class="max-w-7xl mx-auto px-6">
+			<div class="mb-8">
+				<h2 class="text-2xl font-bold text-gray-900 mb-2">Compress &
+					Optimize</h2>
+				<p class="text-gray-600">Reduce file sizes without losing
+					quality</p>
+			</div>
+			<div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+				<div
+					class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all hover-lift cursor-pointer border border-gray-100">
+					<div
+						class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
+						<i class="fas fa-compress-alt text-red-600 text-xl"></i>
+					</div>
+					<h3 class="font-semibold text-gray-900 mb-2">Compress PDF</h3>
+					<p class="text-gray-600 text-sm mb-4">Reduce PDF file size
+						significantly</p>
+					<span
+						class="text-xs text-green-600 bg-green-100 px-2 py-1 rounded-full">Popular</span>
+				</div>
+				<div
+					class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all hover-lift cursor-pointer border border-gray-100">
+					<div
+						class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+						<i class="fas fa-compress-arrows-alt text-green-600 text-xl"></i>
+					</div>
+					<h3 class="font-semibold text-gray-900 mb-2">Compress Images</h3>
+					<p class="text-gray-600 text-sm">Optimize JPG and PNG files</p>
+				</div>
+				<div
+					class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all hover-lift cursor-pointer border border-gray-100">
+					<div
+						class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+						<i class="fas fa-file-archive text-blue-600 text-xl"></i>
+					</div>
+					<h3 class="font-semibold text-gray-900 mb-2">Create ZIP</h3>
+					<p class="text-gray-600 text-sm">Compress multiple files into
+						ZIP</p>
+				</div>
+				<div
+					class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all hover-lift cursor-pointer border border-gray-100">
+					<div
+						class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+						<i class="fas fa-expand-arrows-alt text-purple-600 text-xl"></i>
+					</div>
+					<h3 class="font-semibold text-gray-900 mb-2">Extract ZIP</h3>
+					<p class="text-gray-600 text-sm">Unzip and extract archived
+						files</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Merge & Split Tools -->
+	<section id="merge-split-tools" class="py-12 bg-gray-50">
+		<div class="max-w-7xl mx-auto px-6">
+			<div class="mb-8">
+				<h2 class="text-2xl font-bold text-gray-900 mb-2">Merge & Split</h2>
+				<p class="text-gray-600">Combine or separate your documents</p>
+			</div>
+			<div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+				<div
+					class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all hover-lift cursor-pointer border border-gray-100">
+					<div
+						class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+						<i class="fas fa-layer-group text-blue-600 text-xl"></i>
+					</div>
+					<h3 class="font-semibold text-gray-900 mb-2">Merge PDF</h3>
+					<p class="text-gray-600 text-sm">Combine multiple PDFs into one</p>
+				</div>
+				<div
+					class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all hover-lift cursor-pointer border border-gray-100">
+					<div
+						class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
+						<i class="fas fa-cut text-red-600 text-xl"></i>
+					</div>
+					<h3 class="font-semibold text-gray-900 mb-2">Split PDF</h3>
+					<p class="text-gray-600 text-sm">Extract pages from PDF
+						documents</p>
+				</div>
+				<div
+					class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all hover-lift cursor-pointer border border-gray-100">
+					<div
+						class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+						<i class="fas fa-images text-green-600 text-xl"></i>
+					</div>
+					<h3 class="font-semibold text-gray-900 mb-2">Merge Images</h3>
+					<p class="text-gray-600 text-sm">Combine multiple images into
+						one</p>
+				</div>
+				<div
+					class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all hover-lift cursor-pointer border border-gray-100">
+					<div
+						class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+						<i class="fas fa-file-export text-purple-600 text-xl"></i>
+					</div>
+					<h3 class="font-semibold text-gray-900 mb-2">Extract Pages</h3>
+					<p class="text-gray-600 text-sm">Extract specific pages from
+						documents</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Security Tools -->
+	<section id="security-tools" class="py-12 bg-white">
+		<div class="max-w-7xl mx-auto px-6">
+			<div class="mb-8">
+				<h2 class="text-2xl font-bold text-gray-900 mb-2">Security &
+					Protection</h2>
+				<p class="text-gray-600">Secure and protect your documents</p>
+			</div>
+			<div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+				<div
+					class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all hover-lift cursor-pointer border border-gray-100">
+					<div
+						class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+						<i class="fas fa-shield-alt text-green-600 text-xl"></i>
+					</div>
+					<h3 class="font-semibold text-gray-900 mb-2">Protect PDF</h3>
+					<p class="text-gray-600 text-sm">Add password protection to
+						PDFs</p>
+				</div>
+				<div
+					class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all hover-lift cursor-pointer border border-gray-100">
+					<div
+						class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
+						<i class="fas fa-unlock text-red-600 text-xl"></i>
+					</div>
+					<h3 class="font-semibold text-gray-900 mb-2">Unlock PDF</h3>
+					<p class="text-gray-600 text-sm">Remove password from PDFs</p>
+				</div>
+				<div
+					class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all hover-lift cursor-pointer border border-gray-100">
+					<div
+						class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+						<i class="fas fa-eye-slash text-blue-600 text-xl"></i>
+					</div>
+					<h3 class="font-semibold text-gray-900 mb-2">Redact PDF</h3>
+					<p class="text-gray-600 text-sm">Remove sensitive information</p>
+				</div>
+				<div
+					class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all hover-lift cursor-pointer border border-gray-100">
+					<div
+						class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+						<i class="fas fa-watermark text-purple-600 text-xl"></i>
+					</div>
+					<h3 class="font-semibold text-gray-900 mb-2">Add Watermark</h3>
+					<p class="text-gray-600 text-sm">Add text or image watermarks</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- CTA Section -->
+	<!-- <section id="cta" class="py-20 gradient-bg">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold text-white mb-6">Ready to Transform Your Files?</h2>
+            <p class="text-xl text-blue-100 mb-8">Join millions of users who trust FileFlow for their file conversion needs</p>
+            <button class="bg-white text-primary px-8 py-4 rounded-xl hover:bg-gray-100 transition-all hover-lift font-semibold text-lg">
+                Get Started Free
+            </button>
+        </div>
+    </section> -->
+
+	<!-- Footer -->
+	<footer id="footer" class="bg-gray-900 text-white py-12">
+		<div class="max-w-7xl mx-auto px-6">
+			<div class="grid md:grid-cols-4 gap-8">
+				<div>
+					<div class="flex items-center space-x-2 mb-4">
+						<div
+							class="w-8 h-8 rounded-lg gradient-bg flex items-center justify-center">
+							<i class="fas fa-exchange-alt text-white text-sm"></i>
+						</div>
+						<span class="text-xl font-bold">FileFlow</span>
+					</div>
+					<p class="text-gray-400">The ultimate file conversion and
+						editing platform.</p>
+				</div>
+				<div>
+					<h3 class="font-semibold mb-4">Tools</h3>
+					<ul class="space-y-2 text-gray-400">
+						<li><span
+							class="hover:text-white transition-colors cursor-pointer">PDF
+								Tools</span></li>
+						<li><span
+							class="hover:text-white transition-colors cursor-pointer">Image
+								Tools</span></li>
+						<li><span
+							class="hover:text-white transition-colors cursor-pointer">Document
+								Tools</span></li>
+						<li><span
+							class="hover:text-white transition-colors cursor-pointer">Compression</span></li>
+					</ul>
+				</div>
+				<div>
+					<h3 class="font-semibold mb-4">Company</h3>
+					<ul class="space-y-2 text-gray-400">
+						<li><span
+							class="hover:text-white transition-colors cursor-pointer">About
+								Us</span></li>
+						<li><span
+							class="hover:text-white transition-colors cursor-pointer">Privacy
+								Policy</span></li>
+						<li><span
+							class="hover:text-white transition-colors cursor-pointer">Terms
+								of Service</span></li>
+						<li><span
+							class="hover:text-white transition-colors cursor-pointer">Contact</span></li>
+					</ul>
+				</div>
+				<div>
+					<h3 class="font-semibold mb-4">Follow Us</h3>
+					<div class="flex space-x-4">
+						<span
+							class="text-gray-400 hover:text-white transition-colors cursor-pointer">
+							<i class="fab fa-twitter text-xl"></i>
+						</span> <span
+							class="text-gray-400 hover:text-white transition-colors cursor-pointer">
+							<i class="fab fa-facebook text-xl"></i>
+						</span> <span
+							class="text-gray-400 hover:text-white transition-colors cursor-pointer">
+							<i class="fab fa-linkedin text-xl"></i>
+						</span>
+					</div>
+				</div>
+			</div>
+			<div
+				class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+				<p>&copy; 2024 FileFlow. All rights reserved.</p>
+			</div>
+		</div>
+	</footer>
+
+</body>
+</html>
